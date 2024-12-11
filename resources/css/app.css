@@ -1,0 +1,58 @@
+.sidebar {
+    background-color: #ffffff !important; /* Mengubah warna sidebar menjadi putih */
+    color: #000000 !important; /* Mengubah warna teks menjadi hitam */
+}
+
+.sidebar .nav-link {
+    color: #000000 !important; /* Mengubah warna link di sidebar menjadi hitam */
+}
+
+.sidebar .nav-link:hover {
+    background-color: #f8f9fa !important; /* Menambahkan efek hover */
+    color: #0056b3 !important; /* Warna teks saat hover */
+}
+
+.sidebar .nav-icon {
+    color: #000000 !important; /* Warna ikon di sidebar */
+}
+
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e6f0fa;
+}
+
+h2 {
+    margin: 20px 0;
+    font-weight: bold;
+    color: #2d5c96;
+}
+
+.form-container {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+    font-weight: bold;
+    color: #2d5c96;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-result p {
+    margin: 5px 0;
+}
+
+.user-panel .image i {
+    font-size: 40px;  /* Menyesuaikan ukuran ikon */
+    margin-right: 10px;  /* Memberikan jarak antara ikon dan nama */
+}
+
+.user-panel .info {
+    flex-grow: 1;  /* Memastikan nama pengguna memiliki ruang yang cukup */
+}
