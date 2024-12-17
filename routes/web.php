@@ -46,11 +46,15 @@ Route::group(['prefix' => 'nasabah', 'middleware' => ['auth', 'role:nasabah'], '
   Route::get('/simulasi', [SimulasiController::class, 'simulasi'])->name('simulasi');
   Route::POST('simulasi/hasil', [SimulasiController::class, 'hitung'])->name('hasil');
   Route::post('/simulasi/hitung', [SimulasiController::class, 'hitung'])->name('simulasi.hitung');
+  
+  Route::get('/akad', [AkadController::class, 'index'])->name('akad'); // Menampilkan daftar akad
+  Route::get('/akad/buat', [AkadController::class, 'buatakad'])->name('buatakad'); // Menampilkan form buat akad
+  Route::post('/akad/simpan', [AkadController::class, 'simpan'])->name('simpanakad'); // Simpan data akad baru
+  Route::get('/akad/surat/{id}', [AkadController::class, 'suratAkad'])->name('surat'); // Menampilkan surat akad berdasarkan ID
+  Route::get('/akad/lihat/{id}', [AkadController::class, 'index'])->name('lihatakad'); // Menampilkan daftar semua akad yang sudah disimpan
 
-  Route::get('/akad',[AkadController::class, 'akad'])->name('akad');
-  Route::get('/akad/buat',[AkadController::class, 'buat'])->name('buatakad');
-
-
-
+  Route::get('/akad/edit/{id}', [AkadController::class, 'edit'])->name('editakad'); // Menampilkan form edit akad
+  Route::put('/akad/update/{id}', [AkadController::class, 'update'])->name('updateakad'); // Update data akad
+  Route::delete('/akad/delete/{id}', [AkadController::class, 'destroy'])->name('deleteakad'); // Hapus akad
 });
 

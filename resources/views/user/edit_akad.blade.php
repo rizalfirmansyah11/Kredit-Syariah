@@ -1,19 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard 2</title>
-
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="{{ asset('lte/plugins/fontawesome-free/css/all.min.css')}}">
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="{{ asset('lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('lte/dist/css/adminlte.min.css')}}">
-</head>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>AdminLTE 3 | Dashboard 2</title>
+      
+        <!-- Google Font: Source Sans Pro -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+        <!-- Font Awesome Icons -->
+        <link rel="stylesheet" href="{{ asset('lte/plugins/fontawesome-free/css/all.min.css')}}">
+        <!-- overlayScrollbars -->
+        <link rel="stylesheet" href="{{ asset('lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="{{ asset('lte/dist/css/adminlte.min.css')}}">
+      
+        <!-- Custom Style -->
+        <style>
+            body {
+                background-color: #000000; /* Latar belakang hitam */
+                color: #ffffff; /* Teks putih */
+            }
+    
+            .table {
+                color: #ffffff; /* Warna teks tabel putih */
+            }
+    
+            .thead-dark th {
+                background-color: #333333 !important; /* Header tabel warna abu-abu gelap */
+                color: #ffffff;
+            }
+    
+            .table-hover tbody tr:hover {
+                background-color: #000000; /* Efek hover tabel dengan warna abu-abu gelap */
+            }
+    
+            .btn-info {
+                background-color: #17a2b8; /* Warna tombol lihat surat */
+                border-color: #17a2b8;
+                color: #ffffff;
+            }
+        </style>
+      </head>
+      
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
 
@@ -193,36 +221,41 @@
       </div>
 
       <!-- Sidebar Menu -->
+      <div class="sidebar">
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
+               <li class="nav-item menu-open">
+                <a href="{{ route('nasabah.dashboard') }}" class="nav-link">
+                    <i class="nav-icon fas fa-home"></i>  <!-- Change to home icon -->
+                    <p>Dashboard</p> <!-- Removed the arrow icon -->
+                </a>
+            </li>
             <li class="nav-item">
               <a href="{{ route('nasabah.simulasi') }}" class="nav-link">
                   <i class="nav-icon fas fa-calculator"></i>
                   <p>Simulasi Akad</p>
               </a>
           </li>
+
+          <?php
+          $id = auth()->user()->id; // contoh penggunaan id user yang sedang login
+          ?> 
+
           <li class="nav-item">
-            <a href="{{ route('nasabah.akad') }}" class="nav-link">
-                <i class="nav-icon fas fa-calculator"></i>
+            <a href="{{ route('nasabah.akad', ['id' => $id]) }}" class="nav-link">
+                <i class="nav-icon fas fa-handshake"></i>
                 <p>Akad</p>
             </a>
         </li>
-            
+
       </nav>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
   </aside>
+
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -231,7 +264,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard v2</h1>
+            <h1 class="m-0">Simulasi</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -246,8 +279,46 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
+    <!-- ISIE -->
+    <div class="container mt-4">
+        <h1>Edit Data Akad</h1>
+        <form action="{{ route('nasabah.updateakad', $akad->id) }}" method="POST">
+            @csrf
+            @method('PUT')
+            <div class="form-group">
+                <label>Nama Lengkap</label>
+                <input type="text" name="nama_lengkap" class="form-control" value="{{ $akad->nama_lengkap }}">
+            </div>
+            <div class="form-group">
+                <label>NIK</label>
+                <input type="text" name="nik" class="form-control" value="{{ $akad->nik }}">
+            </div>
+            <div class="form-group">
+                <label>Alamat</label>
+                <input type="text" name="alamat" class="form-control" value="{{ $akad->alamat }}">
+            </div>
+            <div class="form-group">
+                <label>No Telepon</label>
+                <input type="text" name="telepon" class="form-control" value="{{ $akad->telepon }}">
+            </div>
+            <div class="form-group">
+                <label>Jumlah Kredit</label>
+                <input type="number" name="jumlah_kredit" class="form-control" value="{{ $akad->jumlah_kredit }}">
+            </div>
+            <div class="form-group">
+                <label>Jangka Waktu (bulan)</label>
+                <input type="number" name="jangka_waktu" class="form-control" value="{{ $akad->jangka_waktu }}">
+            </div>
+            <button type="submit" class="btn btn-success">Update</button>
+            <a href="{{ route('nasabah.akad') }}" class="btn btn-secondary">Batal</a>
+        </form>
+    </div>
+  
+
+<!-- /.ISIE -->
     
   
+
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

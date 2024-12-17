@@ -219,8 +219,13 @@
                     <p>Simulasi Akad</p>
                     </a>
                 </li>
+
+                <?php
+                $id = auth()->user()->id; // contoh penggunaan id user yang sedang login
+                ?> 
+
                 <li class="nav-item">
-                    <a href="{{ route('nasabah.akad') }}" class="nav-link">
+                  <a href="{{ route('nasabah.buatakad', ['id' => $id]) }}" class="nav-link">
                         <i class="nav-icon fas fa-handshake"></i>
                         <p>Akad</p>
                     </a>
@@ -279,9 +284,13 @@
                                 <i class="fas fa-file-signature fa-3x mb-3"></i>
                                 <h3>Buat Akad Anda</h3>
                                 <p>Mulai membuat akad baru untuk kebutuhan Anda.</p>
-                                <a href="{{ route('nasabah.buatakad') }}" class="btn btn-primary">
+                                
+                                        <?php
+                                        $id = auth()->user()->id; // contoh penggunaan id user yang sedang login
+                                        ?> 
+                                <a href="{{ route('nasabah.buatakad', ['id' => $id]) }}" class="nav-link">
                                     Buat Akad
-                                </a>
+                              </a>
                             </div>
                         </div>
                     </div>
@@ -289,9 +298,13 @@
                         <div class="card">
                             <div class="card-body text-center">
                                 <i class="fas fa-check-circle fa-3x mb-3"></i>
-                                <h3>Persetujuan</h3>
+                                <h3>Lihat akad anda</h3>
                                 <p>Lihat status persetujuan akad Anda.</p>
-                                <a href="#" class="btn btn-success">
+                                                            
+                                      <?php
+                                      $id = auth()->user()->id; // contoh penggunaan id user yang sedang login
+                                      ?> 
+                                <a href="{{ route('nasabah.lihatakad', ['id' => $id]) }}" class="btn btn-success">
                                     Lihat Persetujuan
                                 </a>
                             </div>

@@ -1,19 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard 2</title>
-
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="{{ asset('lte/plugins/fontawesome-free/css/all.min.css')}}">
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="{{ asset('lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('lte/dist/css/adminlte.min.css')}}">
-</head>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>AdminLTE 3 | Dashboard 2</title>
+      
+        <!-- Google Font: Source Sans Pro -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+        <!-- Font Awesome Icons -->
+        <link rel="stylesheet" href="{{ asset('lte/plugins/fontawesome-free/css/all.min.css')}}">
+        <!-- overlayScrollbars -->
+        <link rel="stylesheet" href="{{ asset('lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="{{ asset('lte/dist/css/adminlte.min.css')}}">
+      
+        <!-- Custom Style -->
+        <style>
+            body {
+                background-color: #000000; /* Latar belakang hitam */
+                color: #ffffff; /* Teks putih */
+            }
+    
+            .table {
+                color: #ffffff; /* Warna teks tabel putih */
+            }
+    
+            .thead-dark th {
+                background-color: #333333 !important; /* Header tabel warna abu-abu gelap */
+                color: #ffffff;
+            }
+    
+            .table-hover tbody tr:hover {
+                background-color: #000000; /* Efek hover tabel dengan warna abu-abu gelap */
+            }
+    
+            .btn-info {
+                background-color: #17a2b8; /* Warna tombol lihat surat */
+                border-color: #17a2b8;
+                color: #ffffff;
+            }
+        </style>
+      </head>
+      
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
 
@@ -193,36 +221,41 @@
       </div>
 
       <!-- Sidebar Menu -->
+      <div class="sidebar">
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
+               <li class="nav-item menu-open">
+                <a href="{{ route('nasabah.dashboard') }}" class="nav-link">
+                    <i class="nav-icon fas fa-home"></i>  <!-- Change to home icon -->
+                    <p>Dashboard</p> <!-- Removed the arrow icon -->
+                </a>
+            </li>
             <li class="nav-item">
               <a href="{{ route('nasabah.simulasi') }}" class="nav-link">
                   <i class="nav-icon fas fa-calculator"></i>
                   <p>Simulasi Akad</p>
               </a>
           </li>
+
+          <?php
+          $id = auth()->user()->id; // contoh penggunaan id user yang sedang login
+          ?> 
+
           <li class="nav-item">
-            <a href="{{ route('nasabah.akad') }}" class="nav-link">
-                <i class="nav-icon fas fa-calculator"></i>
+            <a href="{{ route('nasabah.akad', ['id' => $id]) }}" class="nav-link">
+                <i class="nav-icon fas fa-handshake"></i>
                 <p>Akad</p>
             </a>
         </li>
-            
+
       </nav>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
   </aside>
+
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -231,7 +264,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard v2</h1>
+            <h1 class="m-0">Simulasi</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -246,8 +279,96 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
+    <!-- ISIE -->
+    <div class="container mt-4">
+        <h1 class="mb-4">Daftar Akad</h1>
+    
+        <!-- Menampilkan notifikasi jika data berhasil disimpan -->
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+    
+        <!-- Tombol untuk membuat akad baru -->
+        <div class="mb-3">
+            <a href="{{ route('nasabah.buatakad') }}" class="btn btn-primary">
+                <i class="fas fa-plus-circle"></i> Buat Akad Baru
+            </a>
+        </div>
+    
+        <!-- Tabel untuk menampilkan data akad -->
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Lengkap</th>
+                        <th>NIK</th>
+                        <th>Alamat</th>
+                        <th>No. Telepon</th>
+                        <th>Jumlah Kredit</th>
+                        <th>Jangka Waktu</th>
+                        <th class="text-center">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($akads as $index => $akad)
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ $akad->nama_lengkap }}</td>
+                            <td>{{ $akad->nik }}</td>
+                            <td>{{ $akad->alamat }}</td>
+                            <td>{{ $akad->telepon }}</td>
+                            <td>Rp {{ number_format($akad->jumlah_kredit, 0, ',', '.') }}</td>
+                            <td>{{ $akad->jangka_waktu }} bulan</td>
+                            <td class="text-center">
+                                <div class="btn-group" role="group">
+                                    <!-- Tombol untuk melihat surat akad -->
+                                    <a href="{{ route('nasabah.surat', $akad->id) }}" class="btn btn-success btn-sm mr-2">
+                                        <i class="fas fa-paper-plane"></i> Ajukan
+                                    </a>
+                                    
+                                    <!-- Tombol untuk Edit -->
+                                    <a href="{{ route('nasabah.editakad', $akad->id) }}" class="btn btn-primary btn-sm mr-2">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                            
+                                    <!-- Tombol untuk Delete -->
+                                    <form action="{{ route('nasabah.deleteakad', $akad->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash-alt"></i> Delete
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="8" class="text-center text-muted py-4">
+                                <i class="fas fa-exclamation-circle fa-2x"></i>
+                                <p class="mt-2">Belum ada data akad yang tersedia.</p>
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+
+  
+  
+
+<!-- /.ISIE -->
     
   
+
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

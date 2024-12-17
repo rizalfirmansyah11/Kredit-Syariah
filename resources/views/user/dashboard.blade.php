@@ -211,9 +211,12 @@
               </a>
           </li>
 
-           
+          <?php
+$id = auth()->user()->id; // contoh penggunaan id user yang sedang login
+?> 
+
           <li class="nav-item">
-            <a href="{{ route('nasabah.akad') }}" class="nav-link">
+            <a href="{{ route('nasabah.akad', ['id' => $id]) }}" class="nav-link">
                 <i class="nav-icon fas fa-handshake"></i>
                 <p>Akad</p>
             </a>
