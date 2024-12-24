@@ -8,7 +8,6 @@ class Akad extends Model
 {
     use HasFactory;
 
-    // Kolom-kolom yang bisa diisi secara langsung
     protected $fillable = [
         'nama_lengkap',
         'nik',
@@ -16,5 +15,11 @@ class Akad extends Model
         'telepon',
         'jumlah_kredit',
         'jangka_waktu',
+        'user_id', // Tambahkan user_id
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

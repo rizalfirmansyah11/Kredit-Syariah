@@ -46,4 +46,8 @@ class User extends Authenticatable
     ];
 
     
+    public function akads()
+    {
+        return $this->hasMany(Akad::class);
+    }
 }

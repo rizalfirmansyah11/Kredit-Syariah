@@ -25,15 +25,25 @@
   <link rel="stylesheet" href="{{ asset('lte/plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('lte/plugins/summernote/summernote-bs4.min.css') }}">
+
+  <style>
+    .main-sidebar {
+      background-color: #05bb05 !important; /* Hijau tua */
+    }
+    .main-sidebar .nav-link, 
+    .main-sidebar .brand-link, 
+    .main-sidebar .user-panel .info a {
+      color: white !important; /* Mengubah warna teks menjadi putih */
+    }
+  
+    .main-sidebar .nav-link:hover {
+      color: #ccc !important; /* Mengubah warna teks saat hover menjadi abu-abu terang */
+    }
+  </style>
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-
- 
-
-
-
-
 
 
   <!-- Preloader -->
@@ -235,14 +245,18 @@
                   </p>
               </a>
           </li>
-          <li class="nav-item">
-              <a href="{{ route('logout') }}" class="nav-link">
-                  <i class="nav-icon fas fa-sign-out-alt"></i> <!-- Mengganti ikon menjadi ikon logout -->
-                  <p>
-                      Logout
-                  </p>
-              </a>
-          </li>
+        <!-- Form Logout untuk Admin -->
+<li class="nav-item">
+  <a href="{{ route('admin.admin.logout') }}" 
+     class="nav-link" 
+     onclick="event.preventDefault(); document.getElementById('admin-logout-form').submit();">
+    <i class="nav-icon fas fa-sign-out-alt"></i> <!-- Ikon logout -->
+    <p>Logout</p>
+  </a>
+  <form id="admin-logout-form" action="{{ route('admin.admin.logout') }}" method="POST" style="display: none;">
+    @csrf <!-- Token CSRF -->
+  </form>
+</li>
           
             
             

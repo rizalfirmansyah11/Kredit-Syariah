@@ -1,58 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>AdminLTE 3 | Dashboard 2</title>
-      
-        <!-- Google Font: Source Sans Pro -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-        <!-- Font Awesome Icons -->
-        <link rel="stylesheet" href="{{ asset('lte/plugins/fontawesome-free/css/all.min.css')}}">
-        <!-- overlayScrollbars -->
-        <link rel="stylesheet" href="{{ asset('lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
-        <!-- Theme style -->
-        <link rel="stylesheet" href="{{ asset('lte/dist/css/adminlte.min.css')}}">
-      
-        <!-- Custom Style -->
-        <style>
-            body {
-                background-color: #000000; /* Latar belakang hitam */
-                color: #ffffff; /* Teks putih */
-            }
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | Dashboard 2</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="{{ asset('lte/plugins/fontawesome-free/css/all.min.css')}}">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="{{ asset('lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{ asset('lte/dist/css/adminlte.min.css')}}">
+  <style>
+    /* Warna sidebar tetap biru muda */
+    .main-sidebar {
+      background-color: #0391e9 !important;
+    }
+    .main-sidebar .nav-link:hover {
+      background-color: #f4f4f4 !important;
+      color: #007bff !important;
+    }
+
+    /* Background tengah tetap putih */
+    .content-wrapper {
+      background-color: #ffffff !important;
+      padding: 20px;
+    }
+
+    /* Judul dashboard */
+    .content-header h1 {
+      color: #000000 !important;
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    /* Nama pengguna */
+    .user-panel .info a {
+      color: #000000 !important;
+      font-size: 1.2rem;
+      font-weight: bold;
+      font-family: 'Source Sans Pro', sans-serif;
+    }
+    .user-panel .info a:hover {
+      text-decoration: underline;
+      color: #007bff;
+    }
+
+    /* Tabel styling */
+    .table-responsive {
+      max-width: 1000px;
+      margin: 20px auto;
+    }
+
+    .table {
+      border-collapse: collapse;
+    }
+
+    .table th, .table td {
+      font-size: 16px;
+      padding: 12px;
+      color: #000000 !important;
+      text-align: center;
+    }
+
+    .table thead th {
+      background-color: #0391e9;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .table tbody tr:hover {
+      background-color: #f9f9f9;
+    }
+
+    .btn-group .btn {
+      margin-right: 5px;
+    }
+
+    /* Footer styling */
+    .main-footer {
+      background-color: #f8f9fa;
+      padding: 10px 20px;
+      border-top: 1px solid #dee2e6;
+      text-align: center;
+    }
+
+    /* Tombol tetap di atas tabel */
+    .button-container {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: #ffffff;
+      padding: 10px 0;
+    }
+
+    /* Responsif untuk layar kecil */
+    @media (max-width: 768px) {
+      .table th, .table td {
+        font-size: 14px;
+        padding: 8px;
+      }
+
+      .table-responsive {
+        max-width: 100%;
+      }
+
+      .btn {
+        font-size: 12px;
+        padding: 5px;
+      }
+    }
     
-            .table {
-                color: #ffffff; /* Warna teks tabel putih */
-            }
-    
-            .thead-dark th {
-                background-color: #333333 !important; /* Header tabel warna abu-abu gelap */
-                color: #ffffff;
-            }
-    
-            .table-hover tbody tr:hover {
-                background-color: #000000; /* Efek hover tabel dengan warna abu-abu gelap */
-            }
-    
-            .btn-info {
-                background-color: #17a2b8; /* Warna tombol lihat surat */
-                border-color: #17a2b8;
-                color: #ffffff;
-            }
-        </style>
-      </head>
-      
+  </style>
+</head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
 
-  <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div>
-
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-dark">
-    <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
@@ -65,350 +133,161 @@
       </li>
     </ul>
 
-    <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
-      <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-          <i class="fas fa-search"></i>
-        </a>
-        <div class="navbar-search-block">
-          <form class="form-inline">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </li>
-
-      <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-comments"></i>
-          <span class="badge badge-danger navbar-badge">3</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="{{ asset('lte/dist/img/user1-128x128.jpg')}}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Brad Diesel
-                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">Call me whenever you can...</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="{{ asset('lte/dist/img/user8-128x128.jpg')}}" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  John Pierce
-                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">I got your message bro</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="{{ asset('lte/dist/img/user3-128x128.jpg')}}" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Nora Silvester
-                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">The subject goes here</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-        </div>
-      </li>
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-        </div>
-      </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
-        </a>
-      </li>
     </ul>
   </nav>
-  <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="{{ asset('lte/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img src="{{ asset('lte/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3">
       <span class="brand-text font-weight-light">AdminLTE 3</span>
     </a>
 
-    <!-- Sidebar -->
     <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           <img src="{{ asset('lte/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">{{ auth()->user()->name }}</a>
         </div>
       </div>
 
-      <!-- SidebarSearch Form -->
-      <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Sidebar Menu -->
-      <div class="sidebar">
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-               <li class="nav-item menu-open">
-                <a href="{{ route('nasabah.dashboard') }}" class="nav-link">
-                    <i class="nav-icon fas fa-home"></i>  <!-- Change to home icon -->
-                    <p>Dashboard</p> <!-- Removed the arrow icon -->
-                </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{ route('nasabah.simulasi') }}" class="nav-link">
-                  <i class="nav-icon fas fa-calculator"></i>
-                  <p>Simulasi Akad</p>
-              </a>
-          </li>
-
-          <?php
-          $id = auth()->user()->id; // contoh penggunaan id user yang sedang login
-          ?> 
-
-          <li class="nav-item">
-            <a href="{{ route('nasabah.akad', ['id' => $id]) }}" class="nav-link">
-                <i class="nav-icon fas fa-handshake"></i>
-                <p>Akad</p>
+          <li class="nav-item menu-open">
+            <a href="{{ route('nasabah.dashboard') }}" class="nav-link">
+              <i class="nav-icon fas fa-home"></i>
+              <p>Dashboard</p>
             </a>
-        </li>
-
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('nasabah.simulasi') }}" class="nav-link">
+              <i class="nav-icon fas fa-calculator"></i>
+              <p>Simulasi Akad</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('nasabah.akad', ['id' => auth()->user()->id]) }}" class="nav-link">
+              <i class="nav-icon fas fa-handshake"></i>
+              <p>Akad</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('nasabah.nasabah.logout') }}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              <i class="nav-icon fas fa-sign-out-alt"></i>
+              <p>Logout</p>
+            </a>
+            <form id="logout-form" action="{{ route('nasabah.nasabah.logout') }}" method="POST" style="display: none;">
+              @csrf
+            </form>
+          </li>
+        </ul>
       </nav>
-      <!-- /.sidebar-menu -->
     </div>
-    <!-- /.sidebar -->
   </aside>
-
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Simulasi</h1>
-          </div><!-- /.col -->
+            <h1 class="m-0">Dashboard v2</h1>
+          </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item active">Dashboard v2</li>
             </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
+          </div>
+        </div>
+      </div>
     </div>
-   
-    <!-- /.content-header -->
 
     <!-- Main content -->
-    <!-- ISIE -->
-    <div class="container mt-4">
-        <h1 class="mb-4">Daftar Akad</h1>
-    
-        <!-- Menampilkan notifikasi jika data berhasil disimpan -->
-        @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        @endif
-    
-        <!-- Tombol untuk membuat akad baru -->
-        <div class="mb-3">
-            <a href="{{ route('nasabah.buatakad') }}" class="btn btn-primary">
-                <i class="fas fa-plus-circle"></i> Buat Akad Baru
-            </a>
-        </div>
-    
-        <!-- Tabel untuk menampilkan data akad -->
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover table-striped">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>No</th>
-                        <th>Nama Lengkap</th>
-                        <th>NIK</th>
-                        <th>Alamat</th>
-                        <th>No. Telepon</th>
-                        <th>Jumlah Kredit</th>
-                        <th>Jangka Waktu</th>
-                        <th class="text-center">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($akads as $index => $akad)
-                        <tr>
-                            <td>{{ $index + 1 }}</td>
-                            <td>{{ $akad->nama_lengkap }}</td>
-                            <td>{{ $akad->nik }}</td>
-                            <td>{{ $akad->alamat }}</td>
-                            <td>{{ $akad->telepon }}</td>
-                            <td>Rp {{ number_format($akad->jumlah_kredit, 0, ',', '.') }}</td>
-                            <td>{{ $akad->jangka_waktu }} bulan</td>
-                            <td class="text-center">
-                                <div class="btn-group" role="group">
-                                    <!-- Tombol untuk melihat surat akad -->
-                                    <a href="{{ route('nasabah.surat', $akad->id) }}" class="btn btn-success btn-sm mr-2">
-                                        <i class="fas fa-paper-plane"></i> Ajukan
-                                    </a>
-                                    
-                                    <!-- Tombol untuk Edit -->
-                                    <a href="{{ route('nasabah.editakad', $akad->id) }}" class="btn btn-primary btn-sm mr-2">
-                                        <i class="fas fa-edit"></i> Edit
-                                    </a>
-                            
-                                    <!-- Tombol untuk Delete -->
-                                    <form action="{{ route('nasabah.deleteakad', $akad->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">
-                                            <i class="fas fa-trash-alt"></i> Delete
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="8" class="text-center text-muted py-4">
-                                <i class="fas fa-exclamation-circle fa-2x"></i>
-                                <p class="mt-2">Belum ada data akad yang tersedia.</p>
-                            </td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
+    <div class="content">
+      <div class="button-container mb-2">
+        <a href="{{ route('nasabah.buatakad') }}" class="btn btn-sm btn-primary">
+          <i class="fas fa-plus-circle"></i> Buat Akad Baru
+        </a>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama</th>
+              <th>NIK</th>
+              <th>Alamat</th>
+              <th>Telepon</th>
+              <th>Kredit</th>
+              <th>Waktu</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            @forelse ($akads as $index => $akad)
+              <tr>
+                <td>{{ $index + 1 }}</td>
+                <td>{{ $akad->nama_lengkap }}</td>
+                <td>{{ $akad->nik }}</td>
+                <td>{{ $akad->alamat }}</td>
+                <td>{{ $akad->telepon }}</td>
+                <td>Rp {{ number_format($akad->jumlah_kredit, 0, ',', '.') }}</td>
+                <td>{{ $akad->jangka_waktu }} bln</td>
+                <td>
+                  <div class="btn-group">
+                    <a href="{{ route('nasabah.surat', $akad->id) }}" class="btn btn-sm btn-success" title="Kirim Surat">
+                      <i class="fas fa-paper-plane"></i>
+                    </a>
+                    <a href="{{ route('nasabah.editakad', $akad->id) }}" class="btn btn-sm btn-primary" title="Edit Akad">
+                      <i class="fas fa-edit"></i>
+                    </a>
+                    <form action="{{ route('nasabah.deleteakad', $akad->id) }}" method="POST" onsubmit="return confirm('Yakin hapus data ini?');">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" class="btn btn-sm btn-danger" title="Hapus Akad">
+                        <i class="fas fa-trash-alt"></i>
+                      </button>
+                    </form>
+                  </div>
+                </td>
+              </tr>
+            @empty
+              <tr>
+                <td colspan="8" class="text-center text-muted">
+                  <i class="fas fa-exclamation-circle"></i> Tidak ada data.
+                </td>
+              </tr>
+            @endforelse
+          </tbody>
+        </table>
+      </div>
+
     </div>
-    
 
-  
-  
+  </div>
 
-<!-- /.ISIE -->
-    
-  
-
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-
-  <!-- Main Footer -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+    <strong>Welcome, {{ auth()->user()->name }}.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 3.2.0
     </div>
   </footer>
 </div>
-<!-- ./wrapper -->
 
-<!-- REQUIRED SCRIPTS -->
-<!-- jQuery -->
 <script src="{{ asset('lte/plugins/jquery/jquery.min.js') }}"></script>
-<!-- Bootstrap -->
 <script src="{{ asset('lte/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<!-- overlayScrollbars -->
 <script src="{{ asset('lte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
-<!-- AdminLTE App -->
 <script src="{{ asset('lte/dist/js/adminlte.js') }}"></script>
-
-<!-- PAGE PLUGINS -->
-<!-- jQuery Mapael -->
-<script src="{{ asset('lte/plugins/jquery-mousewheel/jquery.mousewheel.js') }}"></script>
-<script src="{{ asset('lte/plugins/raphael/raphael.min.js') }}"></script>
-<script src="{{ asset('lte/plugins/jquery-mapael/jquery.mapael.min.js') }}"></script>
-<script src="{{ asset('lte/plugins/jquery-mapael/maps/usa_states.min.js') }}"></script>
-<!-- ChartJS -->
-<script src="{{ asset('lte/plugins/chart.js/Chart.min.js') }}"></script>
-
-<!-- AdminLTE for demo purposes -->
-<script src="{{ asset('lte/dist/js/demo.js') }}"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ asset('lte/dist/js/pages/dashboard2.js') }}"></script>
 </body>
 </html>

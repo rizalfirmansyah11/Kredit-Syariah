@@ -30,12 +30,11 @@ class AkadController extends Controller
         return view('nasabah.user.surat', compact('akad')); // Mengarahkan ke view surat akad
     }
 
-
     public function index()
     {
-        // Ambil semua data akad dari database
-        $akads = Akad::all();
-
+        // Ambil data akad berdasarkan ID pengguna yang sedang login
+        $akads = Akad::where('user_id', auth()->id())->get();
+    
         // Kirim data ke view
         return view('user.lihatakad', compact('akads'));
     }
@@ -51,13 +50,22 @@ class AkadController extends Controller
             'jumlah_kredit' => 'required|numeric',
             'jangka_waktu' => 'required|integer',
         ]);
-
-        // Menyimpan data ke database
-        Akad::create($request->all());
-
+    
+        // Simpan data dengan user_id dari pengguna yang login
+        Akad::create([
+            'nama_lengkap' => $request->nama_lengkap,
+            'nik' => $request->nik,
+            'alamat' => $request->alamat,
+            'telepon' => $request->telepon,
+            'jumlah_kredit' => $request->jumlah_kredit,
+            'jangka_waktu' => $request->jangka_waktu,
+            'user_id' => auth()->id(), // Ambil ID pengguna login
+        ]);
+    
         return redirect()->route('nasabah.akad')->with('success', 'Data akad berhasil disimpan!');
     }
-
+    
+    
     // Menampilkan form edit akad
 public function edit($id)
 {

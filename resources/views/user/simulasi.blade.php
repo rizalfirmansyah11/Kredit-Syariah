@@ -1,28 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>AdminLTE 3 | Dashboard 2</title>
-      
-        <!-- Google Font: Source Sans Pro -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-        <!-- Font Awesome Icons -->
-        <link rel="stylesheet" href="{{ asset('lte/plugins/fontawesome-free/css/all.min.css')}}">
-        <!-- overlayScrollbars -->
-        <link rel="stylesheet" href="{{ asset('lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
-        <!-- Theme style -->
-        <link rel="stylesheet" href="{{ asset('lte/dist/css/adminlte.min.css')}}">
-      
-        <!-- Custom Style -->
-        <style>
-            .content-wrapper {
-                background-color: #ffffff !important;
-                color: #8aff04;
-            }
-        </style>
-      </head>
-      
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | Dashboard 2</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="{{ asset('lte/plugins/fontawesome-free/css/all.min.css')}}">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="{{ asset('lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{ asset('lte/dist/css/adminlte.min.css')}}">
+  <style>
+    /* Mengubah warna sidebar menjadi biru muda */
+    .main-sidebar {
+      background-color: #0391e9 !important; /* Warna biru muda */
+    }
+    .main-sidebar .nav-link:hover {
+      background-color: #f4f4f4 !important; /* Warna hover lebih terang */
+      color: #007bff !important; /* Warna teks hover menjadi biru */
+    }
+    /* Mengubah background tengah menjadi putih */
+    .content-wrapper {
+      background-color: #ffffff !important; /* Warna putih */
+    }
+    /* Mengubah warna teks judul dashboard menjadi hitam */
+    .content-header h1 {
+      color: #000000 !important; /* Warna hitam */
+    }
+    /* Mengubah warna nama pengguna yang sedang login menjadi hitam */
+    .user-panel .info a {
+      color: #000000 !important; /* Warna hitam */
+      font-size: 1.2rem; /* Ukuran font sedikit lebih besar */
+      font-weight: bold; /* Membuat teks lebih tebal */
+      font-family: 'Source Sans Pro', sans-serif; /* Font Google yang sudah diimpor */
+    }
+    .user-panel .info a:hover {
+      text-decoration: underline; /* Garis bawah saat dihover */
+      color: #007bff; /* Biru saat dihover */
+    }
+  </style>
+  
+</head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
 
@@ -177,17 +198,17 @@
       <span class="brand-text font-weight-light">AdminLTE 3</span>
     </a>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="{{ asset('lte/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
-        </div>
-      </div>
+   <!-- Sidebar -->
+<div class="sidebar">
+  <!-- Sidebar user panel (optional) -->
+  <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+    <div class="image">
+      <img src="{{ asset('lte/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+    </div>
+    <div class="info">
+      <a href="#" class="d-block">{{ auth()->user()->name }}</a>
+    </div>
+  </div>
 
       <!-- SidebarSearch Form -->
       <div class="form-inline">
@@ -201,42 +222,58 @@
         </div>
       </div>
 
-      <!-- Sidebar Menu -->
-      <div class="sidebar">
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-               <li class="nav-item menu-open">
-                <a href="{{ route('nasabah.dashboard') }}" class="nav-link">
-                    <i class="nav-icon fas fa-home"></i>  <!-- Change to home icon -->
-                    <p>Dashboard</p> <!-- Removed the arrow icon -->
-                </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{ route('nasabah.simulasi') }}" class="nav-link">
-                  <i class="nav-icon fas fa-calculator"></i>
-                  <p>Simulasi Akad</p>
-              </a>
-          </li>
+    <!-- Sidebar Menu -->
+<!-- Sidebar Menu -->
+<nav class="mt-2">
+  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+    <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
+    <li class="nav-item menu-open">
+      <a href="{{ route('nasabah.dashboard') }}" class="nav-link">
+        <i class="nav-icon fas fa-home"></i>  <!-- Change to home icon -->
+        <p>Dashboard</p> <!-- Removed the arrow icon -->
+      </a>
+    </li>
 
-          <?php
-          $id = auth()->user()->id; // contoh penggunaan id user yang sedang login
-          ?> 
+    <li class="nav-item">
+      <a href="{{ route('nasabah.simulasi') }}" class="nav-link">
+        <i class="nav-icon fas fa-calculator"></i>
+        <p>Simulasi Akad</p>
+      </a>
+    </li>
 
-          <li class="nav-item">
-            <a href="{{ route('nasabah.akad', ['id' => $id]) }}" class="nav-link">
-                <i class="nav-icon fas fa-handshake"></i>
-                <p>Akad</p>
-            </a>
-        </li>
+    <?php
+      $id = auth()->user()->id; // contoh penggunaan id user yang sedang login
+    ?>
 
-      </nav>
+    <li class="nav-item">
+      <a href="{{ route('nasabah.akad', ['id' => $id]) }}" class="nav-link">
+        <i class="nav-icon fas fa-handshake"></i>
+        <p>Akad</p>
+      </a>
+    </li>
+
+    <!-- Form Logout untuk Nasabah (ditempatkan di posisi kiri bersama item lainnya) -->
+    <li class="nav-item">
+      <a href="{{ route('nasabah.nasabah.logout') }}" 
+         class="nav-link" 
+         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        <i class="nav-icon fas fa-sign-out-alt"></i> <!-- Ikon logout -->
+        <p>Logout</p>
+      </a>
+      <form id="logout-form" action="{{ route('nasabah.nasabah.logout') }}" method="POST" style="display: none;">
+        @csrf <!-- Token CSRF -->
+      </form>
+    </li>
+    
+  </ul>
+</nav>
+
+
+
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
   </aside>
-
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -245,7 +282,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Simulasi</h1>
+            <h1 class="m-0">Dashboard v2</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -260,8 +297,8 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <!-- ISIE -->
-    <style>
+     <!-- ISIE -->
+     <style>
       /* Mengubah warna latar belakang Form Simulasi dan Hasil Simulasi */
       .card {
           background-color: #ffffff !important;
@@ -402,17 +439,15 @@
 <!-- /.ISIE -->
     
   
-
+  
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
   </aside>
   <!-- /.control-sidebar -->
-
-  <!-- Main Footer -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+    <strong>Welcome, {{ auth()->user()->name }}.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 3.2.0

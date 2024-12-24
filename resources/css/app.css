@@ -56,3 +56,13 @@ h2 {
 .user-panel .info {
     flex-grow: 1;  /* Memastikan nama pengguna memiliki ruang yang cukup */
 }
+.table tbody tr:hover {
+    background-color: rgba(3, 145, 233, 0.15); /* Warna biru muda dengan transparansi */
+  }
+  .button-container {
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Pastikan tombol berada di atas elemen lain */
+    background-color: #ffffff; /* Latar belakang tombol mengikuti halaman */
+    padding: 10px 0; /* Tambahkan sedikit ruang */
+  }  
