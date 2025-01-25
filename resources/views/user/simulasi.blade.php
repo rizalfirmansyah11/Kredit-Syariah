@@ -44,158 +44,55 @@
   </style>
   
 </head>
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="hold-transition light-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
 
-  <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div>
-
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-dark">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li>
-    </ul>
-
-    <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
-      <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-          <i class="fas fa-search"></i>
-        </a>
-        <div class="navbar-search-block">
-          <form class="form-inline">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-          </form>
+ <!-- Preloader -->
+ <div class="preloader flex-column justify-content-center align-items-center">
+  <img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+</div>
+<nav class="main-header navbar navbar-expand navbar-light bg-white border-bottom">
+  <!-- Left navbar: Search Bar -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <form class="form-inline">
+        <div class="input-group input-group-sm">
+          <!-- Ikon search menyatu dengan input -->
+          <div class="input-group-prepend">
+            <button class="btn btn-navbar" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+          <input class="form-control form-control-navbar" type="search" placeholder="Search..." aria-label="Search">
         </div>
-      </li>
+      </form>
+    </li>
+  </ul>
 
-      <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-comments"></i>
-          <span class="badge badge-danger navbar-badge">3</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="{{ asset('lte/dist/img/user1-128x128.jpg')}}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Brad Diesel
-                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">Call me whenever you can...</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="{{ asset('lte/dist/img/user8-128x128.jpg')}}" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  John Pierce
-                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">I got your message bro</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="{{ asset('lte/dist/img/user3-128x128.jpg')}}" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Nora Silvester
-                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">The subject goes here</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-        </div>
-      </li>
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-          <i class="fas fa-expand-arrows-alt"></i>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
-        </a>
-      </li>
-    </ul>
-  </nav>
-  <!-- /.navbar -->
+  <!-- Right navbar: User Avatar -->
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item dropdown">
+      <a class="nav-link" data-toggle="dropdown" href="#">
+        <img src="{{ asset('lte/dist/img/user2-160x160.jpg') }}" alt="User Avatar" class="img-circle elevation-2" style="height: 30px; width: 30px;">
+      </a>
+      <div class="dropdown-menu dropdown-menu-right">
+        <a href="#" class="dropdown-item">Profile</a>
+        <a href="#" class="dropdown-item">Settings</a>
+        <div class="dropdown-divider"></div>
+        <a href="#" class="dropdown-item">Logout</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="{{ asset('lte/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <img src="{{ asset('lte/dist/img/logonyar.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-bold" 
+      style="font-size: 15px; color: #00a7e9; margin-left: 15px; font-family: 'Scheherazade', serif;">Kredit Syariah</span>
     </a>
 
    <!-- Sidebar -->
@@ -252,6 +149,14 @@
       </a>
     </li>
 
+    
+    <li class="nav-item">
+      <a href="{{ route('nasabah.nasabah.pembayaran') }}" class="nav-link">
+        <i class="nav-icon fas fa-credit-card"></i>
+        <p>Pembayaran</p>
+      </a>
+
+
     <!-- Form Logout untuk Nasabah (ditempatkan di posisi kiri bersama item lainnya) -->
     <li class="nav-item">
       <a href="{{ route('nasabah.nasabah.logout') }}" 
@@ -278,165 +183,181 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Dashboard v2</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v2</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
+  
    
     <!-- /.content-header -->
 
     <!-- Main content -->
      <!-- ISIE -->
      <style>
-      /* Mengubah warna latar belakang Form Simulasi dan Hasil Simulasi */
-      .card {
-          background-color: #ffffff !important;
-      }
-    
-      /* Menyesuaikan warna teks agar tetap terlihat */
-      .card-header {
-          color: #ffffff !important; /* Mengatur teks header menjadi putih */
-      }
-    
-      .card-body {
-          color: #000000 !important; /* Teks isi formulir tetap hitam */
-      }
-    
-      /* Menyesuaikan warna input teks menjadi putih */
-      .form-control {
-          background-color: #ffffff !important; /* Warna latar input putih */
-          color: #000000 !important; /* Warna teks hitam */
-      }
-    
-      .form-control::placeholder {
-          color: #6c757d; /* Warna placeholder */
-      }
-    
-      /* Menyesuaikan warna tombol */
-      .btn {
-          color: #ffffff !important;
-      }
-    </style>
-    
-    <div class="container mt-4">
+      /* Sidebar background to white */
+   .main-sidebar {
+     background-color: #ffffff !important; /* Background putih */
+     color: #000000; /* Teks hitam untuk kontras */
+   }
+   
+   /* Sidebar link colors */
+   .main-sidebar .nav-link {
+     color: #000000 !important; /* Warna teks hitam */
+   }
+   
+   .main-sidebar .nav-link:hover {
+     background-color: #f0f0f0 !important; /* Warna hover abu-abu terang */
+     color: #007bff !important; /* Warna teks biru saat dihover */
+   }
+   
+   /* Active link styling */
+   .main-sidebar .nav-link.active {
+     background-color: #007bff !important; /* Background biru untuk link aktif */
+     color: #ffffff !important; /* Teks putih untuk link aktif */
+     border-radius: 5px; /* Sedikit melengkung untuk sudut */
+   }
+   
+   /* Sidebar header and footer */
+   .main-sidebar .brand-link {
+     background-color: #f4f4f4 !important; /* Background abu-abu terang */
+     color: #007bff !important; /* Teks biru */
+   }
+   
+   .main-sidebar .brand-link:hover {
+     background-color: #e6e6e6 !important; /* Hover abu-abu lebih gelap */
+   }
+   
+   /* Sidebar user panel */
+   .user-panel .info a {
+     color: #007bff !important; /* Warna teks biru */
+     font-weight: bold;
+   }
+   
+   .user-panel .info a:hover {
+     text-decoration: underline;
+   }
+   
+   /* Divider styling for separation */
+   .nav-sidebar > .nav-item > .nav-link {
+     border-bottom: 1px solid #f4f4f4 !important; /* Garis pemisah */
+   }
+   .content-wrapper {
+  margin-left: -20px;
+}
+
+     </style>
+     
+   </head>
+<!-- Content Wrapper -->
+<div class="content-wrapper" style="margin-left: -20px;">
+  <!-- Content Header -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <h1 class="text-center mt-4" style="font-weight: bold; color: #007bff;">Simulasi Pembiayaan Kredit Syariah</h1>
+      <p class="text-center text-muted">Gunakan simulasi ini untuk menghitung estimasi pembiayaan Anda.</p>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content">
+    <div class="container-fluid">
       <div class="row">
-          <!-- Form Simulasi -->
-          <div class="col-md-6 d-flex align-items-center">
-              <div class="card shadow-lg w-100 h-100">
-                  <div class="card-header bg-success text-white text-center">
-                      <h5>Form Simulasi</h5>
-                  </div>
-                  <div class="card-body">
-                      <form action="{{ route('nasabah.simulasi.hitung') }}" method="POST">
-                          @csrf
-                          <div class="mb-3">
-                              <label for="nama_barang" class="form-label">Nama Barang</label>
-                              <input type="text" class="form-control rounded-pill" id="nama_barang" name="nama_barang" placeholder="Masukkan Nama Barang" required>
-                          </div>
-                          <div class="mb-3">
-                              <label for="harga_barang" class="form-label">Harga Barang (Cash)</label>
-                              <input type="number" class="form-control rounded-pill" id="harga_barang" name="harga_barang" placeholder="Masukkan Harga Barang" required>
-                          </div>
-                          <div class="mb-3">
-                              <label for="uang_muka" class="form-label">Uang Muka</label>
-                              <input type="number" class="form-control rounded-pill" id="uang_muka" name="uang_muka" placeholder="Masukkan Uang Muka" required>
-                          </div>
-                          <div class="mb-3">
-                              <label for="tenor" class="form-label">Tenor (bulan)</label>
-                              <input type="number" class="form-control rounded-pill" id="tenor" name="tenor" placeholder="Masukkan Tenor" required>
-                          </div>
-                          <div class="d-flex justify-content-between">
-                            <button type="reset" class="btn btn-secondary">Reset</button>
-                            <button type="submit" class="btn btn-success">Hitung</button>
-                        </div>
-                      
-                      </form>
-                  </div>
-              </div>
+        <!-- Form Simulasi -->
+        <div class="col-md-6">
+          <div class="card shadow-lg">
+            <div class="card-header bg-success text-white text-center">
+              <h5>Form Simulasi</h5>
+            </div>
+            <div class="card-body">
+              <form action="{{ route('nasabah.simulasi.hitung') }}" method="POST">
+                @csrf
+                <div class="form-group">
+                  <label for="nama_barang">Nama Barang</label>
+                  <input type="text" name="nama_barang" id="nama_barang" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label for="harga_barang">Harga Barang</label>
+                  <input type="number" name="harga_barang" id="harga_barang" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label for="uang_muka">Uang Muka</label>
+                  <input type="number" name="uang_muka" id="uang_muka" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label for="tenor">Tenor (Bulan)</label>
+                  <select name="tenor" id="tenor" class="form-control" required>
+                    <option value="12">12 Bulan</option>
+                    <option value="24">24 Bulan</option>
+                    <option value="36">36 Bulan</option>
+                    <option value="48">48 Bulan</option>
+                    <option value="60">60 Bulan</option>
+                  </select>
+                </div>
+                <div class="d-grid mt-3">
+                  <button type="submit" class="btn btn-primary btn-block">Hitung</button>
+                </div>
+              </form>
+            </div>
           </div>
-    
-          <!-- Form Hasil -->
-          <div class="col-md-6 d-flex align-items-center">
-              <div class="card shadow-lg w-100 h-100">
-                  <div class="card-header bg-primary text-white text-center">
-                      <h5>Hasil Simulasi</h5>
-                  </div>
-                  <div class="card-body">
-                      @if(session('hasil'))
-                          <table class="table table-hover table-striped">
-                              <thead class="bg-primary text-white">
-                                  <tr>
-                                      <th>Item</th>
-                                      <th>Detail</th>
-                                  </tr>
-                              </thead>
-                              <tbody>
-                                  <tr>
-                                      <td>Nama Barang</td>
-                                      <td>{{ session('hasil')['nama_barang'] }}</td>
-                                  </tr>
-                                  <tr>
-                                      <td>Harga Cash (Tunai)</td>
-                                      <td>Rp {{ session('hasil')['harga_cash'] }}</td>
-                                  </tr>
-                                  <tr>
-                                      <td>Harga Beli</td>
-                                      <td>Rp {{ session('hasil')['harga_beli'] }}</td>
-                                  </tr>
-                                  <tr>
-                                      <td>Tenor</td>
-                                      <td>{{ session('hasil')['tenor'] }} Bulan</td>
-                                  </tr>
-                                  <tr>
-                                      <td>Angsuran Per Bulan</td>
-                                      <td>Rp {{ session('hasil')['angsuran_bulan'] }}</td>
-                                  </tr>
-                                  <tr>
-                                      <td>Uang Muka</td>
-                                      <td>Rp {{ session('hasil')['uang_muka'] }}</td>
-                                  </tr>
-                                  <tr>
-                                      <td>Biaya Proses</td>
-                                      <td>Rp {{ session('hasil')['biaya_proses'] }}</td>
-                                  </tr>
-                                  <tr>
-                                      <td>Notaris</td>
-                                      <td>Rp {{ session('hasil')['notaris'] }}</td>
-                                  </tr>
-                                  <tr>
-                                      <td>Survey</td>
-                                      <td>Rp {{ session('hasil')['survey'] }}</td>
-                                  </tr>
-                                  <tr>
-                                      <td>Total Biaya</td>
-                                      <td>Rp {{ session('hasil')['total_biaya'] }}</td>
-                                  </tr>
-                              </tbody>
-                          </table>
-                      @else
-                          <p class="text-center">Silakan isi form simulasi untuk melihat hasil.</p>
-                      @endif
-                  </div>
-              </div>
+        </div>
+
+        <!-- Kotak Hasil Simulasi -->
+        <div class="col-md-6">
+          @if(session('hasil'))
+          <!-- Hasil Simulasi -->
+          <div class="card shadow-lg">
+            <div class="card-header bg-primary text-white text-center">
+              <h5>Hasil Simulasi</h5>
+            </div>
+            <div class="card-body">
+              <table class="table table-hover table-striped text-center">
+                <thead class="bg-primary text-white">
+                  <tr>
+                    <th>Bulan</th>
+                    <th>Pembiayaan Setelah DP</th>
+                    <th>Margin Keuntungan (%)</th>
+                    <th>Total Pembayaran</th>
+                    <th>Angsuran Bulanan</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach(session('hasil')['simulasi'] as $row)
+                  <tr>
+                    <td>{{ $row['bulan'] }} Bulan</td>
+                    <td>Rp {{ $row['pembiayaan_setelah_dp'] }}</td>
+                    <td>{{ $row['margin_keuntungan'] }}%</td>
+                    <td>Rp {{ $row['total_pembayaran'] }}</td>
+                    <td>Rp {{ $row['angsuran_bulanan'] }}</td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
           </div>
+          @else
+          <!-- Placeholder jika belum ada hasil -->
+          <div class="w-100 border rounded d-flex justify-content-center align-items-center" 
+               style="height: 300px; border-style: dashed; border-color: #007bff;">
+            <h5 style="color: #007bff; font-weight: bold;">Hasil Simulasi</h5>
+          </div>
+          @endif
+        </div>
+      </div>
+
+      <!-- Tips atau Informasi Tambahan -->
+      <div class="row mt-4">
+        <div class="col-md-12">
+          <div class="alert alert-info text-center">
+            <h5 class="mb-3"><i class="fas fa-info-circle"></i> Tips:</h5>
+            <p>Pastikan data yang Anda masukkan sesuai dengan kebutuhan Anda. Untuk informasi lebih lanjut, silakan hubungi layanan pelanggan kami.</p>
+          </div>
+        </div>
       </div>
     </div>
-    
-  
-  
+  </div>
+</div>
 
-<!-- /.ISIE -->
+<!-- Footer -->
+<footer class="text-center py-3 bg-light">
+  <p class="mb-0">&copy; {{ date('Y') }} Kredit Syariah. All Rights Reserved.</p>
+</footer>
+
     
   
   

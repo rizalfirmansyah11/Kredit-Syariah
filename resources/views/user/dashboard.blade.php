@@ -13,204 +13,317 @@
   <link rel="stylesheet" href="{{ asset('lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('lte/dist/css/adminlte.min.css')}}">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
   <style>
-    /* Mengubah warna sidebar menjadi biru muda */
-    .main-sidebar {
-      background-color: #0391e9 !important; /* Warna biru muda */
+     body {
+      font-family: 'Cairo', sans-serif;
     }
-    .main-sidebar .nav-link:hover {
-      background-color: #f4f4f4 !important; /* Warna hover lebih terang */
-      color: #007bff !important; /* Warna teks hover menjadi biru */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Amiri', serif;
     }
-    /* Mengubah background tengah menjadi putih */
     .content-wrapper {
-      background-color: #ffffff !important; /* Warna putih */
+      background: #f8f9fa;
     }
-    /* Mengubah warna teks judul dashboard menjadi hitam */
-    .content-header h1 {
-      color: #000000 !important; /* Warna hitam */
+    .btn-primary {
+      font-family: 'Cairo', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
     }
-    /* Mengubah warna nama pengguna yang sedang login menjadi hitam */
-    .user-panel .info a {
-      color: #000000 !important; /* Warna hitam */
-      font-size: 1.2rem; /* Ukuran font sedikit lebih besar */
-      font-weight: bold; /* Membuat teks lebih tebal */
-      font-family: 'Source Sans Pro', sans-serif; /* Font Google yang sudah diimpor */
+   /* Sidebar background to white */
+.main-sidebar {
+  background-color: #ffffff !important; /* Background putih */
+  color: #000000; /* Teks hitam untuk kontras */
+}
+
+/* Sidebar link colors */
+.main-sidebar .nav-link {
+  color: #000000 !important; /* Warna teks hitam */
+}
+
+.main-sidebar .nav-link:hover {
+  background-color: #f0f0f0 !important; /* Warna hover abu-abu terang */
+  color: #007bff !important; /* Warna teks biru saat dihover */
+}
+
+/* Active link styling */
+.main-sidebar .nav-link.active {
+  background-color: #007bff !important; /* Background biru untuk link aktif */
+  color: #ffffff !important; /* Teks putih untuk link aktif */
+  border-radius: 5px; /* Sedikit melengkung untuk sudut */
+}
+
+/* Sidebar header and footer */
+.main-sidebar .brand-link {
+  background-color: #f4f4f4 !important; /* Background abu-abu terang */
+  color: #007bff !important; /* Teks biru */
+}
+
+.main-sidebar .brand-link:hover {
+  background-color: #e6e6e6 !important; /* Hover abu-abu lebih gelap */
+}
+
+/* Sidebar user panel */
+.user-panel .info a {
+  color: #007bff !important; /* Warna teks biru */
+  font-weight: bold;
+}
+
+.user-panel .info a:hover {
+  text-decoration: underline;
+}
+
+/* Divider styling for separation */
+.nav-sidebar > .nav-item > .nav-link {
+  border-bottom: 1px solid #f4f4f4 !important; /* Garis pemisah */
+}
+
+body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
     }
-    .user-panel .info a:hover {
-      text-decoration: underline; /* Garis bawah saat dihover */
-      color: #007bff; /* Biru saat dihover */
+
+    .card {
+  margin-left: 20px; /* Atur jarak sesuai keinginan */
+}
+.container {
+  padding-left: 10px; /* Sesuaikan nilai */
+}
+
+    .container-fluid {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
+
+    .card {
+      background-color: #f8f9fa;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card h1 {
+      color: #007bff;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      text-align: center;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .card p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .card ul li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .card ul li img {
+      width: 24px;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+
+    .card ul li strong {
+      color: #007bff;
+    }
+
+    .card-footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #e9ecef;
+      border-radius: 0 0 10px 10px;
+    }
+
+    .card-footer a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .col-md-12 {
+      flex: 1 1 100%;
+    }
+    content-wrapper {
+  padding-left: 0 !important; /* Menghapus padding kiri */
+  margin-left: 0 !important; /* Menghapus margin kiri */
+}
+
+.content-wrapper {
+  padding-left: 10px; /* Sesuaikan nilai untuk membuat konten lebih ke kiri */
+}
+
+.card {
+  margin-left: 0px; /* Pastikan margin kiri nol untuk setiap kartu */
+  padding-left: 10px; /* Tambahkan padding internal agar teks tidak menempel */
+}
+
+.container {
+  padding-left: 15px; /* Atur padding pada container */
+}
+
+.row {
+  margin-left: 0; /* Hapus margin bawaan baris */
+}
+.navbar .form-control {
+  border-radius: 10px;
+  background-color: #f8f9fa; /* Warna latar belakang input */
+  border: none; /* Hilangkan border */
+  box-shadow: none; /* Hilangkan bayangan */
+}
+
+.navbar .img-circle {
+  border: 1px solid #e9ecef;
+}
+
+.navbar .form-control-navbar {
+  border-radius: 20px; /* Membulatkan tepi input */
+  margin-left: 0; /* Jarak dari elemen lain */
+  background-color: #f8f9fa; /* Warna latar belakang */
+  border: none; /* Hilangkan border */
+}
+
+.navbar .btn-navbar {
+  border: none; /* Hilangkan border tombol */
+  background-color: transparent; /* Latar belakang transparan */
+  color: #6c757d; /* Warna ikon */
+  padding: 0; /* Hilangkan padding */
+  margin: 0; /* Hilangkan margin */
+}
+
+.navbar .input-group-prepend {
+  border-radius: 20px; /* Membuat ikon menyatu */
+  background-color: transparent; /* Latar belakang transparan */
+}
+
+.navbar .input-group-prepend .btn-navbar i {
+  margin: 0; /* Hilangkan jarak dalam ikon */
+  color: #6c757d; /* Warna ikon */
+}
+.nav-sidebar .nav-item {
+  margin-bottom: 10px; /* Mengatur jarak antar menu */
+}
+
+/* Menghilangkan margin terakhir */
+.nav-sidebar .nav-item:last-child {
+  margin-bottom: 0;
+}
+
   </style>
   
 </head>
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+  
 <div class="wrapper">
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
   </div>
-
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-dark">
-    <!-- Left navbar links -->
+  <nav class="main-header navbar navbar-expand navbar-light bg-white border-bottom">
+    <!-- Left navbar: Search Bar -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <form class="form-inline">
+          <div class="input-group input-group-sm">
+            <!-- Ikon search menyatu dengan input -->
+            <div class="input-group-prepend">
+              <button class="btn btn-navbar" type="submit">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+            <input class="form-control form-control-navbar" type="search" placeholder="Search..." aria-label="Search">
+          </div>
+        </form>
       </li>
     </ul>
-
-    <!-- Right navbar links -->
+  
+    <!-- Right navbar: User Avatar -->
     <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
-      <li class="nav-item">
-        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-          <i class="fas fa-search"></i>
-        </a>
-        <div class="navbar-search-block">
-          <form class="form-inline">
-            <div class="input-group input-group-sm">
-              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-              <div class="input-group-append">
-                <button class="btn btn-navbar" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </li>
-
-      <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-comments"></i>
-          <span class="badge badge-danger navbar-badge">3</span>
+          <img src="{{ asset('lte/dist/img/user2-160x160.jpg') }}" alt="User Avatar" class="img-circle elevation-2" style="height: 30px; width: 30px;">
         </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="{{ asset('lte/dist/img/user1-128x128.jpg')}}" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Brad Diesel
-                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">Call me whenever you can...</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="{{ asset('lte/dist/img/user8-128x128.jpg')}}" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  John Pierce
-                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">I got your message bro</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <!-- Message Start -->
-            <div class="media">
-              <img src="{{ asset('lte/dist/img/user3-128x128.jpg')}}" alt="User Avatar" class="img-size-50 img-circle mr-3">
-              <div class="media-body">
-                <h3 class="dropdown-item-title">
-                  Nora Silvester
-                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                </h3>
-                <p class="text-sm">The subject goes here</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-              </div>
-            </div>
-            <!-- Message End -->
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+          <a href="#" class="dropdown-item">Logout</a>
         </div>
-      </li>
-      <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-          <i class="fas fa-expand-arrows-alt"></i>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-          <i class="fas fa-th-large"></i>
-        </a>
       </li>
     </ul>
   </nav>
-  <!-- /.navbar -->
+  
+
+
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="{{ asset('lte/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
-    </a>
+<!-- Brand Logo -->
+<!-- Brand Logo -->
+<!-- Brand Logo -->
+<a style="display: flex; align-items: center; margin: 0; padding: 10px 15px; background-color: #f8f9fa;">
+  <img src="{{ asset('lte/dist/img/logonyar.png') }}" 
+       class="brand-image img-circle elevation-3" 
+       style="opacity: 1; width: 50px; height: 50px; object-fit: contain;">
+       <span class="brand-text font-weight-bold" 
+       style="font-size: 15px; color: #00a7e9; margin-left: 15px; font-family: 'Scheherazade', serif;">Kredit Syariah</span>
 
-   <!-- Sidebar -->
-<div class="sidebar">
-  <!-- Sidebar user panel (optional) -->
-  <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-    <div class="image">
-      <img src="{{ asset('lte/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
-    </div>
-    <div class="info">
-      <a href="#" class="d-block">{{ auth()->user()->name }}</a>
-    </div>
+</a>
+
+<!-- Sidebar -->
+<div class="sidebar" style="margin: 0; padding: 0;">
+ <!-- Sidebar user panel (optional) -->
+<!-- Sidebar user panel (optional) -->
+<div class="user-panel d-flex" style="margin: 10px 0; padding: 10px 15px; background-color: #ffffff;">
+  <div class="image" style="margin-right: 10px;">
+    <!-- Tambahkan kondisi untuk mengganti foto -->
+    <img id="user-image" src="{{ asset('lte/dist/img/contact.png') }}" class="img-circle elevation-2" alt="User Image" style="height: 30px; width: 30px;">
   </div>
+  <div class="info">
+    <a href="#" class="d-block" style="color: #007bff; font-weight: bold;">Nasabah</a>
+  </div>
+</div>
 
-      <!-- SidebarSearch Form -->
+
+
+
+
+
+
+
+
+      {{-- <!-- SidebarSearch Form -->
       <div class="form-inline">
         <div class="input-group" data-widget="sidebar-search">
           <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
@@ -220,21 +333,21 @@
             </button>
           </div>
         </div>
-      </div>
+      </div> --}}
 
     <!-- Sidebar Menu -->
 <!-- Sidebar Menu -->
 <nav class="mt-2">
   <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
     <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
-    <li class="nav-item menu-open">
+    <li class="nav-item menu-open" style="margin-bottom: 10px;">
       <a href="{{ route('nasabah.dashboard') }}" class="nav-link">
-        <i class="nav-icon fas fa-home"></i>  <!-- Change to home icon -->
+        <i class="nav-icon fas fa-home"></i> <!-- Change to home icon -->
         <p>Dashboard</p> <!-- Removed the arrow icon -->
       </a>
     </li>
 
-    <li class="nav-item">
+    <li class="nav-item" style="margin-bottom: 10px;">
       <a href="{{ route('nasabah.simulasi') }}" class="nav-link">
         <i class="nav-icon fas fa-calculator"></i>
         <p>Simulasi Akad</p>
@@ -245,14 +358,21 @@
       $id = auth()->user()->id; // contoh penggunaan id user yang sedang login
     ?>
 
-    <li class="nav-item">
+    <li class="nav-item" style="margin-bottom: 10px;">
       <a href="{{ route('nasabah.akad', ['id' => $id]) }}" class="nav-link">
         <i class="nav-icon fas fa-handshake"></i>
         <p>Akad</p>
       </a>
     </li>
 
-    <!-- Form Logout untuk Nasabah (ditempatkan di posisi kiri bersama item lainnya) -->
+    <li class="nav-item" style="margin-bottom: 10px;">
+      <a href="{{ route('nasabah.nasabah.pembayaran') }}" class="nav-link">
+        <i class="nav-icon fas fa-credit-card"></i>
+        <p>Pembayaran</p>
+      </a>
+    </li>
+
+    <!-- Form Logout untuk Nasabah -->
     <li class="nav-item">
       <a href="{{ route('nasabah.nasabah.logout') }}" 
          class="nav-link" 
@@ -264,9 +384,9 @@
         @csrf <!-- Token CSRF -->
       </form>
     </li>
-    
   </ul>
 </nav>
+
 
 
 
@@ -274,29 +394,111 @@
     </div>
     <!-- /.sidebar -->
   </aside>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper" style="padding: 0; margin: 0; background: #f8f9fa;">
+  <section class="content">
+    <div class="container-fluid p-4">
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Dashboard v2</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v2</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
+      <!-- Header Section -->
+      <div class="row mb-4">
+        <div class="col-md-12">
+          <div class="card shadow-lg p-5 text-center bg-primary text-white">
+            <h1 class="mb-3">Kredit Syariah</h1>
+            <h3 class="mb-3">Membangun Masa Depan dengan Prinsip Islami</h3>
+            <p class="mb-0">
+              Kredit syariah adalah layanan keuangan yang berlandaskan prinsip-prinsip syariah, seperti akad yang sesuai dengan hukum Islam.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Benefits Section -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card shadow-sm p-5">
+            <h2 class="mb-5 text-center text-primary">Manfaat Kredit Syariah</h2>
+            <ul class="list-unstyled">
+
+              <!-- Transparansi -->
+              <li class="mb-5 d-flex align-items-start">
+                <div class="me-3">
+                  <img src="{{ asset('lte/dist/img/transparency.png') }}" alt="Transparansi" style="width: 70px; height: 70px; filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.2));">
+                </div>
+                <div>
+                  <h5 class="text-primary">Prinsip Transparansi</h5>
+                  <p class="mb-0">
+                    Semua transaksi dilakukan dengan prinsip transparansi penuh, sehingga semua pihak memahami hak dan kewajiban masing-masing.
+                  </p>
+                </div>
+              </li>
+
+              <!-- Tanpa Riba -->
+              <li class="mb-5 d-flex align-items-start">
+                <div class="me-3">
+                  <img src="{{ asset('lte/dist/img/no-riba.png') }}" alt="Tanpa Riba" style="width: 70px; height: 70px; filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.2));">
+                </div>
+                <div>
+                  <h5 class="text-primary">Tanpa Riba</h5>
+                  <p class="mb-0">
+                    Kredit syariah tidak melibatkan bunga (riba) yang dilarang dalam Islam, sehingga memberikan solusi keuangan yang sesuai dengan prinsip syariah.
+                  </p>
+                </div>
+              </li>
+
+              <!-- Akad yang Jelas -->
+              <li class="mb-5 d-flex align-items-start">
+                <div class="me-3">
+                  <img src="{{ asset('lte/dist/img/contract.png') }}" alt="Akad Jelas" style="width: 70px; height: 70px; filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.2));">
+                </div>
+                <div>
+                  <h5 class="text-primary">Akad yang Jelas</h5>
+                  <p class="mb-0">
+                    Setiap transaksi dilakukan berdasarkan akad yang sah, seperti akad murabaha, mudharabah, musyarakah, dan lain-lain.
+                  </p>
+                </div>
+              </li>
+
+              <!-- Partisipasi Bersama -->
+              <li class="mb-5 d-flex align-items-start">
+                <div class="me-3">
+                  <img src="{{ asset('lte/dist/img/group.png') }}" alt="Partisipasi" style="width: 70px; height: 70px; filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.2));">
+                </div>
+                <div>
+                  <h5 class="text-primary">Partisipasi Bersama</h5>
+                  <p class="mb-0">
+                    Nasabah memiliki partisipasi dalam proyek atau bisnis yang dibiayai, menciptakan hubungan yang lebih adil dan berimbang.
+                  </p>
+                </div>
+              </li>
+
+              <!-- Keberkahan Hasil -->
+              <li class="d-flex align-items-start">
+                <div class="me-3">
+                  <img src="{{ asset('lte/dist/img/bless.png') }}" alt="Keberkahan" style="width: 70px; height: 70px; filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.2));">
+                </div>
+                <div>
+                  <h5 class="text-primary">Keberkahan Hasil</h5>
+                  <p class="mb-0">
+                    Hasil dari kegiatan bisnis tidak hanya diukur berdasarkan keuntungan finansial, tetapi juga aspek keberkahan dan kebermanfaatan bagi masyarakat sekitar.
+                  </p>
+                </div>
+              </li>
+            </ul>
+
+            <!-- Footer CTA -->
+            <div class="text-center mt-5">
+              <a href="#" class="btn btn-lg btn-primary px-5 py-3" style="border-radius: 50px; font-size: 1.2rem;">
+                Pelajari Lebih Lanjut
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-   
-    <!-- /.content-header -->
+  </section>
+</div>
 
-    <!-- Main content -->
+  
     
   
 

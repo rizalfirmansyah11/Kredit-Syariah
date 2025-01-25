@@ -8,157 +8,120 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="{{ asset('lte/plugins/fontawesome-free/css/all.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('lte/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="{{ asset('lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('lte/dist/css/adminlte.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('lte/dist/css/adminlte.min.css') }}">
+
   <style>
-    /* Warna sidebar tetap biru muda */
+    /* Sidebar customization */
     .main-sidebar {
-      background-color: #0391e9 !important;
+      background-color: #ffffff !important;
+      color: #000000;
     }
+
+    .main-sidebar .nav-link {
+      color: #000000 !important;
+    }
+
     .main-sidebar .nav-link:hover {
+      background-color: #f0f0f0 !important;
+      color: #007bff !important;
+    }
+
+    .main-sidebar .nav-link.active {
+      background-color: #007bff !important;
+      color: #ffffff !important;
+      border-radius: 5px;
+    }
+
+    .main-sidebar .brand-link {
       background-color: #f4f4f4 !important;
       color: #007bff !important;
     }
 
-    /* Background tengah tetap putih */
-    .content-wrapper {
-      background-color: #ffffff !important;
-      padding: 20px;
+    .main-sidebar .brand-link:hover {
+      background-color: #e6e6e6 !important;
     }
 
-    /* Judul dashboard */
-    .content-header h1 {
-      color: #000000 !important;
-      font-size: 1.8rem;
-      font-weight: bold;
-      margin-bottom: 1rem;
-    }
-
-    /* Nama pengguna */
     .user-panel .info a {
-      color: #000000 !important;
-      font-size: 1.2rem;
+      color: #007bff !important;
       font-weight: bold;
-      font-family: 'Source Sans Pro', sans-serif;
     }
+
     .user-panel .info a:hover {
       text-decoration: underline;
-      color: #007bff;
     }
 
-    /* Tabel styling */
-    .table-responsive {
-      max-width: 1000px;
-      margin: 20px auto;
+    .nav-sidebar > .nav-item > .nav-link {
+      border-bottom: 1px solid #f4f4f4 !important;
     }
-
-    .table {
-      border-collapse: collapse;
-    }
-
-    .table th, .table td {
-      font-size: 16px;
-      padding: 12px;
-      color: #000000 !important;
-      text-align: center;
-    }
-
-    .table thead th {
-      background-color: #0391e9;
-      color: #ffffff;
-      text-transform: uppercase;
-    }
-
-    .table tbody tr:hover {
-      background-color: #f9f9f9;
-    }
-
-    .btn-group .btn {
-      margin-right: 5px;
-    }
-
-    /* Footer styling */
-    .main-footer {
-      background-color: #f8f9fa;
-      padding: 10px 20px;
-      border-top: 1px solid #dee2e6;
-      text-align: center;
-    }
-
-    /* Tombol tetap di atas tabel */
-    .button-container {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background-color: #ffffff;
-      padding: 10px 0;
-    }
-
-    /* Responsif untuk layar kecil */
-    @media (max-width: 768px) {
-      .table th, .table td {
-        font-size: 14px;
-        padding: 8px;
-      }
-
-      .table-responsive {
-        max-width: 100%;
-      }
-
-      .btn {
-        font-size: 12px;
-        padding: 5px;
-      }
-    }
-    
   </style>
 </head>
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
-
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-dark">
+ <!-- Preloader -->
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+  </div>
+  <nav class="main-header navbar navbar-expand navbar-light bg-white border-bottom">
+    <!-- Left navbar: Search Bar -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <form class="form-inline">
+          <div class="input-group input-group-sm">
+            <!-- Ikon search menyatu dengan input -->
+            <div class="input-group-prepend">
+              <button class="btn btn-navbar" type="submit">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+            <input class="form-control form-control-navbar" type="search" placeholder="Search..." aria-label="Search">
+          </div>
+        </form>
       </li>
     </ul>
-
+  
+    <!-- Right navbar: User Avatar -->
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-          <i class="fas fa-expand-arrows-alt"></i>
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <img src="{{ asset('lte/dist/img/user2-160x160.jpg') }}" alt="User Avatar" class="img-circle elevation-2" style="height: 30px; width: 30px;">
         </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">Logout</a>
+        </div>
       </li>
     </ul>
   </nav>
+  
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="{{ asset('lte/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <img src="{{ asset('lte/dist/img/logonyar.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3">
+      <span class="brand-text font-weight-bold" 
+       style="font-size: 15px; color: #00a7e9; margin-left: 15px; font-family: 'Scheherazade', serif;">Kredit Syariah</span>
     </a>
 
+    <!-- Sidebar -->
     <div class="sidebar">
+      <!-- User Panel -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ asset('lte/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{ asset('lte/dist/img/contact.png') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">{{ auth()->user()->name }}</a>
         </div>
       </div>
 
+      <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item menu-open">
@@ -179,6 +142,15 @@
               <p>Akad</p>
             </a>
           </li>
+
+          
+    <li class="nav-item">
+      <a href="{{ route('nasabah.nasabah.pembayaran') }}" class="nav-link">
+        <i class="nav-icon fas fa-credit-card"></i>
+        <p>Pembayaran</p>
+      </a>
+
+
           <li class="nav-item">
             <a href="{{ route('nasabah.nasabah.logout') }}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
               <i class="nav-icon fas fa-sign-out-alt"></i>
@@ -190,104 +162,275 @@
           </li>
         </ul>
       </nav>
+      <!-- /.sidebar-menu -->
     </div>
+    <!-- /.sidebar -->
   </aside>
 
-  <!-- Content Wrapper. Contains page content -->
+  <!-- Content Wrapper -->
   <div class="content-wrapper">
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Dashboard v2</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v2</li>
-            </ol>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- Content Header -->
+  
+    <!-- /.content-header -->
 
     <!-- Main content -->
-    <div class="content">
-      <div class="button-container mb-2">
-        <a href="{{ route('nasabah.buatakad') }}" class="btn btn-sm btn-primary">
-          <i class="fas fa-plus-circle"></i> Buat Akad Baru
-        </a>
-      </div>
-
-      <div class="table-responsive">
-        <table class="table table-bordered table-hover">
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>Nama</th>
-              <th>NIK</th>
-              <th>Alamat</th>
-              <th>Telepon</th>
-              <th>Kredit</th>
-              <th>Waktu</th>
-              <th>Aksi</th>
-            </tr>
-          </thead>
-          <tbody>
-            @forelse ($akads as $index => $akad)
-              <tr>
-                <td>{{ $index + 1 }}</td>
-                <td>{{ $akad->nama_lengkap }}</td>
-                <td>{{ $akad->nik }}</td>
-                <td>{{ $akad->alamat }}</td>
-                <td>{{ $akad->telepon }}</td>
-                <td>Rp {{ number_format($akad->jumlah_kredit, 0, ',', '.') }}</td>
-                <td>{{ $akad->jangka_waktu }} bln</td>
-                <td>
-                  <div class="btn-group">
-                    <a href="{{ route('nasabah.surat', $akad->id) }}" class="btn btn-sm btn-success" title="Kirim Surat">
-                      <i class="fas fa-paper-plane"></i>
-                    </a>
-                    <a href="{{ route('nasabah.editakad', $akad->id) }}" class="btn btn-sm btn-primary" title="Edit Akad">
-                      <i class="fas fa-edit"></i>
-                    </a>
-                    <form action="{{ route('nasabah.deleteakad', $akad->id) }}" method="POST" onsubmit="return confirm('Yakin hapus data ini?');">
-                      @csrf
-                      @method('DELETE')
-                      <button type="submit" class="btn btn-sm btn-danger" title="Hapus Akad">
-                        <i class="fas fa-trash-alt"></i>
-                      </button>
-                    </form>
-                  </div>
-                </td>
-              </tr>
-            @empty
-              <tr>
-                <td colspan="8" class="text-center text-muted">
-                  <i class="fas fa-exclamation-circle"></i> Tidak ada data.
-                </td>
-              </tr>
-            @endforelse
-          </tbody>
-        </table>
-      </div>
-
+   <!-- Main content -->
+   <div class="content">
+    <div class="container-fluid">
+        <!-- Statistik Ringkas -->
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <div class="card card-success">
+                    <div class="card-body">
+                        <h5 class="text-success font-weight-bold">Akad Diterima</h5>
+                        <p class="text-muted font-weight-bold">{{ $akads->where('status', 'accepted')->count() }} Akad</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-danger">
+                    <div class="card-body">
+                        <h5 class="text-danger font-weight-bold">Akad Ditolak</h5>
+                        <p class="text-muted font-weight-bold">{{ $akads->where('status', 'rejected')->count() }} Akad</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-warning">
+                    <div class="card-body">
+                        <h5 class="text-warning font-weight-bold">Akad Pending</h5>
+                        <p class="text-muted font-weight-bold">{{ $akads->where('status', 'pending')->count() }} Akad</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-  </div>
-
-  <footer class="main-footer">
-    <strong>Welcome, {{ auth()->user()->name }}.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.2.0
-    </div>
-  </footer>
 </div>
 
+<!-- Tambahkan CSS untuk meningkatkan keterbacaan -->
+<style>
+    .card-success {
+        background-color: #d4edda;
+    }
+
+    .card-danger {
+        background-color: #f8d7da;
+    }
+
+    .card-warning {
+        background-color: #fff3cd;
+    }
+
+    .text-success {
+        color: #28a745;
+    }
+
+    .text-danger {
+        color: #dc3545;
+    }
+
+    .text-warning {
+        color: #ffc107;
+    }
+
+    .text-muted {
+        color: #6c757d;
+    }
+
+    .font-weight-bold {
+        font-weight: bold;
+    }
+    .custom-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.custom-table th {
+  background-color: #f8f9fa; /* Warna abu-abu muda */
+  color: #343a40; /* Warna teks */
+  text-align: left;
+  padding: 12px 15px;
+  font-weight: bold;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.custom-table td {
+  padding: 12px 15px;
+  vertical-align: middle;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.custom-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.custom-table .foto-benda {
+  width: 70px;
+  height: auto;
+  border-radius: 5px;
+}
+
+.badge-success {
+  background-color: #28a745;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 12px;
+}
+
+.badge-danger {
+  background-color: #dc3545;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 12px;
+}
+
+.badge-warning {
+  background-color: #ffc107;
+  color: #212529;
+  padding: 5px 10px;
+  border-radius: 12px;
+}
+
+</style>
+
+
+
+
+<div class="mb-2">
+  <a href="{{ route('nasabah.buatakad') }}" class="btn btn-sm btn-primary">
+    <i class="fas fa-plus-circle"></i> Buat Akad Baru
+  </a>
+</div>
+<div class="table-responsive">
+  <table class="table table-hover custom-table">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Nama</th>
+        <th>NIK</th>
+        <th>Alamat</th>
+        <th>Telepon</th>
+        <th>Kredit</th>
+        <th>Waktu</th>
+        <th>Tanggal Pembuatan</th>
+        <th>Foto Benda</th>
+        <th>Status</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      @forelse ($akads as $index => $akad)
+      <tr>
+        <td>{{ $index + 1 }}</td>
+        <td>{{ $akad->nama_lengkap }}</td>
+        <td>{{ $akad->nik }}</td>
+        <td>{{ $akad->alamat }}</td>
+        <td>{{ $akad->telepon }}</td>
+        <td>Rp {{ number_format($akad->jumlah_kredit, 0, ',', '.') }}</td>
+        <td>{{ $akad->jangka_waktu }} bln</td>
+        <td>{{ $akad->created_at->format('d-m-Y') }}</td>
+        <td>
+          @if ($akad->foto_benda)
+          <img src="{{ asset('storage/' . $akad->foto_benda) }}" alt="Foto Benda" class="foto-benda">
+          @else
+          <span class="text-muted">Tidak ada foto</span>
+          @endif
+        </td>
+        <td id="status-{{ $akad->id }}">
+          @if ($akad->status === null || $akad->status === 'pending')
+          <span class="badge badge-warning">Pending</span>
+          @elseif ($akad->status === 'accepted')
+          <span class="badge badge-success">Diterima</span>
+          @elseif ($akad->status === 'rejected')
+          <span class="badge badge-danger">Ditolak</span>
+          @else
+          <span>-</span>
+          @endif
+        </td>
+        <td class="action-cell">
+          <div class="action-buttons">
+            @if ($akad->status === null || $akad->status === 'pending')
+            <form action="{{ route('nasabah.kirimAkad', $akad->id) }}" method="POST" class="kirim-form" data-id="{{ $akad->id }}">
+              @csrf
+              <button type="button" class="btn btn-sm btn-primary btn-kirim" data-id="{{ $akad->id }}">
+                <i class="fas fa-paper-plane"></i> Kirim
+              </button>
+            </form>
+            @endif
+            <a href="{{ route('nasabah.editakad', $akad->id) }}" class="btn btn-sm btn-warning">
+              <i class="fas fa-edit"></i> Edit
+            </a>
+            <form action="{{ route('nasabah.deleteakad', $akad->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus akad ini?');">
+              @csrf
+              @method('DELETE')
+              <button type="submit" class="btn btn-sm btn-danger">
+                <i class="fas fa-trash"></i> Hapus
+              </button>
+            </form>
+          </div>
+        </td>
+      </tr>
+      @empty
+      <tr>
+        <td colspan="11" class="text-center text-muted">
+          <i class="fas fa-exclamation-circle"></i> Tidak ada data.
+        </td>
+      </tr>
+      @endforelse
+    </tbody>
+  </table>
+</div>
+
+
+    <!-- /.content -->
+
+    <!-- Footer -->
+    <footer class="main-footer">
+      <strong>Welcome, {{ auth()->user()->name }}.</strong>
+      All rights reserved.
+      <div class="float-right d-none d-sm-inline-block">
+        <b>Version</b> 3.2.0
+      </div>
+    </footer>
+  </div>
+  <!-- /.content-wrapper -->
+</div>
+
+<!-- Scripts -->
 <script src="{{ asset('lte/plugins/jquery/jquery.min.js') }}"></script>
-<script src="{{ asset('lte/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{ asset('lte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('lte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 <script src="{{ asset('lte/dist/js/adminlte.js') }}"></script>
+<script>
+  $(document).on('click', '.btn-kirim', function(e) {
+    e.preventDefault();
+    var akadId = $(this).data('id');
+
+    $.ajax({
+      url: '{{ route('nasabah.kirimAkad', ':id') }}'.replace(':id', akadId),
+      type: 'POST',
+      data: {
+        _token: '{{ csrf_token() }}',
+      },
+      success: function(response) {
+        if (response.status === 'success') {
+          $('#status-' + akadId).html('<span class="badge badge-warning">Pending</span>');
+          alert(response.message || 'Akad berhasil dikirim!');
+        } else {
+          alert(response.message || 'Terjadi kesalahan.');
+        }
+      },
+      error: function() {
+        alert('Terjadi kesalahan. Silakan coba lagi.');
+      }
+    });
+  });
+</script>
 </body>
 </html>

@@ -19,6 +19,8 @@ return new class extends Migration
         $table->string('telepon');
         $table->decimal('jumlah_kredit', 15, 2);
         $table->integer('jangka_waktu');
+        $table->string('status');
+        
         $table->timestamps();
     });
 }

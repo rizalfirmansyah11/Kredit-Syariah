@@ -14,88 +14,110 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('lte/dist/css/adminlte.min.css') }}">
   <style>
-    /* Warna sidebar dan efek hover */
-    .main-sidebar {
-      background-color: #0391e9 !important;
-    }
-    .main-sidebar .nav-link {
-      color: #ffffff !important; /* Warna default tulisan */
-    }
-    .main-sidebar .nav-link:hover {
-      background-color: #f4f4f4 !important;
-      color: #007bff !important; /* Warna tulisan saat hover */
-    }
-
-    /* Warna konten dan elemen lainnya */
-    .content-wrapper {
-      background-color: #ffffff !important;
-    }
-    .content-header h1 {
-      color: #000000 !important;
-    }
-    .user-panel .info a {
-      color: #000000 !important;
-      font-size: 1.2rem;
-      font-weight: bold;
-      font-family: 'Source Sans Pro', sans-serif;
-    }
-    .user-panel .info a:hover {
-      text-decoration: underline;
-      color: #007bff;
-    }
-    .card {
-    border: 2px solid #dcdcdc; /* Bingkai */
-    border-radius: 12px; /* Sudut melengkung */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Bayangan */
-  }
-
-  /* Penempatan kartu di tengah */
-  .row.justify-content-center {
-    display: flex;
-    justify-content: center; /* Horizontal */
-    align-items: center; /* Vertikal */
-  }
-  </style>
-</head>
-<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
+    /* Sidebar background to white */
+ .main-sidebar {
+   background-color: #ffffff !important; /* Background putih */
+   color: #000000; /* Teks hitam untuk kontras */
+ }
+ 
+ /* Sidebar link colors */
+ .main-sidebar .nav-link {
+   color: #000000 !important; /* Warna teks hitam */
+ }
+ 
+ .main-sidebar .nav-link:hover {
+   background-color: #f0f0f0 !important; /* Warna hover abu-abu terang */
+   color: #007bff !important; /* Warna teks biru saat dihover */
+ }
+ 
+ /* Active link styling */
+ .main-sidebar .nav-link.active {
+   background-color: #007bff !important; /* Background biru untuk link aktif */
+   color: #ffffff !important; /* Teks putih untuk link aktif */
+   border-radius: 5px; /* Sedikit melengkung untuk sudut */
+ }
+ 
+ /* Sidebar header and footer */
+ .main-sidebar .brand-link {
+   background-color: #f4f4f4 !important; /* Background abu-abu terang */
+   color: #007bff !important; /* Teks biru */
+ }
+ 
+ .main-sidebar .brand-link:hover {
+   background-color: #e6e6e6 !important; /* Hover abu-abu lebih gelap */
+ }
+ 
+ /* Sidebar user panel */
+ .user-panel .info a {
+   color: #007bff !important; /* Warna teks biru */
+   font-weight: bold;
+ }
+ 
+ .user-panel .info a:hover {
+   text-decoration: underline;
+ }
+ 
+ /* Divider styling for separation */
+ .nav-sidebar > .nav-item > .nav-link {
+   border-bottom: 1px solid #f4f4f4 !important; /* Garis pemisah */
+ }
+ 
+   </style>
+   
+ </head>
+ <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
 
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-dark">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link">Home</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="fullscreen" href="#"><i class="fas fa-expand-arrows-alt"></i></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('nasabah.nasabah.logout') }}" 
-           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-          <i class="fas fa-sign-out-alt"></i>
-        </a>
-        <form id="logout-form" action="{{ route('nasabah.nasabah.logout') }}" method="POST" style="display: none;">
-          @csrf
-        </form>
-      </li>
-    </ul>
-  </nav>
+ <!-- Preloader -->
+ <div class="preloader flex-column justify-content-center align-items-center">
+  <img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+</div>
+<nav class="main-header navbar navbar-expand navbar-light bg-white border-bottom">
+  <!-- Left navbar: Search Bar -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <form class="form-inline">
+        <div class="input-group input-group-sm">
+          <!-- Ikon search menyatu dengan input -->
+          <div class="input-group-prepend">
+            <button class="btn btn-navbar" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+          <input class="form-control form-control-navbar" type="search" placeholder="Search..." aria-label="Search">
+        </div>
+      </form>
+    </li>
+  </ul>
+
+  <!-- Right navbar: User Avatar -->
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item dropdown">
+      <a class="nav-link" data-toggle="dropdown" href="#">
+        <img src="{{ asset('lte/dist/img/user2-160x160.jpg') }}" alt="User Avatar" class="img-circle elevation-2" style="height: 30px; width: 30px;">
+      </a>
+      <div class="dropdown-menu dropdown-menu-right">
+        <a href="#" class="dropdown-item">Profile</a>
+        <a href="#" class="dropdown-item">Settings</a>
+        <div class="dropdown-divider"></div>
+        <a href="#" class="dropdown-item">Logout</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+
 
   <!-- Sidebar -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="#" class="brand-link">
-      <img src="{{ asset('lte/dist/img/AdminLTELogo.png') }}" class="brand-image img-circle elevation-3">
-      <span class="brand-text font-weight-light">Dashboard</span>
+      <img src="{{ asset('lte/dist/img/logonyar.png') }}" class="brand-image img-circle elevation-3">
+      <span class="brand-text font-weight-bold" 
+       style="font-size: 15px; color: #00a7e9; margin-left: 15px; font-family: 'Scheherazade', serif;">Kredit Syariah</span>
     </a>
     <div class="sidebar">
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ asset('lte/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+          <img src="{{ asset('lte/dist/img/contact.png') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">{{ auth()->user()->name }}</a>
@@ -121,6 +143,13 @@
               <p>Akad</p>
             </a>
           </li>
+          
+    <li class="nav-item">
+      <a href="{{ route('nasabah.nasabah.pembayaran') }}" class="nav-link">
+        <i class="nav-icon fas fa-credit-card"></i>
+        <p>Pembayaran</p>
+      </a>
+
           <li class="nav-item">
             <a href="{{ route('nasabah.nasabah.logout') }}" 
                class="nav-link" 
@@ -136,51 +165,71 @@
 
 <!-- Content Wrapper -->
 <div class="content-wrapper">
-  <div class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-2">
-        <div class="col-sm-6">
-          <h1 class="m-0">Dashboard</h1>
-        </div>
-      </div>
-    </div>
-  </div>
   <section class="content">
     <div class="container-fluid">
-      <div class="row justify-content-center">
-        <!-- Kartu Akad -->
-        <div class="col-md-5">
-          <div class="card">
-            <div class="card-body text-center">
-              <i class="fas fa-file-signature text-primary"></i>
-              <h3 class="text-primary">Buat Akad Anda</h3>
-              <p>Mulai membuat akad baru untuk kebutuhan Anda.</p>
-              <a href="{{ route('nasabah.buatakad', ['id' => auth()->user()->id]) }}" class="btn btn-primary">Buat Akad</a>
-            </div>
-          </div>
-        </div>
-  
-        <!-- Kartu Persetujuan -->
-        <div class="col-md-5">
-          <div class="card">
-            <div class="card-body text-center">
-              <i class="fas fa-check-circle text-success"></i>
-              <h3 class="text-success">Lihat Akad Anda</h3>
-              <p>Lihat status persetujuan akad Anda.</p>
-              <a href="{{ route('nasabah.lihatakad', ['id' => auth()->user()->id]) }}" class="btn btn-success">Lihat Persetujuan</a>
-            </div>
-          </div>
+      <!-- Judul Halaman -->
+      <div class="row">
+        <div class="col-md-12 text-center my-4">
+          <h1 style="font-weight: bold; color: #007bff;">Selamat Datang di Kredit Syariah</h1>
+          <p class="text-muted">Kelola akad dan pembiayaan Anda dengan mudah di sini.</p>
         </div>
       </div>
+
+      <!-- Kartu-Kartu -->
+      <div class="row justify-content-center">
+        <!-- Kartu Akad -->
+        <div class="col-md-5 mb-4">
+          <div class="card shadow-lg border-0" style="border-radius: 15px;">
+            <div class="card-body text-center">
+              <div class="icon-container mb-3">
+                <i class="fas fa-file-signature text-primary" style="font-size: 50px;"></i>
+              </div>
+              <h3 class="text-primary">Buat Akad Anda</h3>
+              <p class="text-muted">Mulai membuat akad baru untuk kebutuhan Anda dengan proses yang mudah dan cepat.</p>
+              <a href="{{ route('nasabah.buatakad', ['id' => auth()->user()->id]) }}" class="btn btn-primary">
+                Buat Akad
+              </a>
+            </div>
+          </div>
+        </div>
+
+      <!-- Kartu Persetujuan -->
+<div class="col-md-5 mb-4">
+  <div class="card shadow-lg border-0" style="border-radius: 15px;">
+    <div class="card-body text-center">
+      <div class="icon-container mb-3">
+        <i class="fas fa-check-circle text-success" style="font-size: 50px;"></i>
+      </div>
+      <h3 class="text-success">Lihat Akad Anda</h3>
+      <p class="text-muted">Cek status persetujuan akad Anda kapan saja dengan mudah.</p>
+      <a href="{{ route('nasabah.lihatakad', ['id' => auth()->user()->id]) }}" class="btn btn-success">
+        Lihat Persetujuan
+      </a>
     </div>
-  </section>
+  </div>
 </div>
 
+{{-- <div class="content-wrapper">
+  <!-- Additional Information Section -->
+  <div class="alert alert-info text-center mt-4 mx-4">
+    <h5 class="mb-3">
+      <i class="fas fa-info-circle"></i> Tips untuk Anda:
+    </h5>
+    <p>
+      Jangan lupa untuk memastikan semua data yang Anda masukkan sudah benar sebelum memulai akad.
+      Jika membutuhkan bantuan, Anda bisa menghubungi layanan pelanggan kami.
+    </p>
+  </div> --}}
 
-  <footer class="main-footer text-center">
+  <!-- Footer Section -->
+  <footer class="main-footer text-center mt-auto">
     <strong>Copyright &copy; 2024 Kredit Syariah</strong>
   </footer>
 </div>
+
+      
+      
+
 
 <script src="{{ asset('lte/plugins/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('lte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>

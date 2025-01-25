@@ -13,13 +13,31 @@ class Akad extends Model
         'nik',
         'alamat',
         'telepon',
+        'email',
+        'jenis_benda',
+        'merek_benda',
+        'tahun_pembuatan',
+        'harga_benda',
+        'foto_benda',
         'jumlah_kredit',
         'jangka_waktu',
-        'user_id', // Tambahkan user_id
+        'tanggal_pembuatan', // Pastikan kolom ini dapat diisi
+    ];
+    
+
+    protected $attributes = [
+        'status' => 'pending',
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+
+   
+
+    // public function benda()
+    // {
+    //     return $this->belongsTo(Benda::class);
+    // }
 }

@@ -245,6 +245,24 @@
                   </p>
               </a>
           </li>
+
+
+          <li class="nav-item dropdown">
+            <a href="{{ route('admin.admin.akads') }}" class="nav-link dropdown-toggle">
+              <i class="nav-icon fas fa-file-signature"></i> <!-- Ikon untuk akad -->
+              <p>Akad</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('admin.admin.akads.riwayat') }}" class="nav-link">
+                <i class="nav-icon fas fa-history"></i> <!-- Ikon untuk riwayat -->
+                <p>Riwayat Akad</p>
+            </a>
+        </li>
+        
+
+
+
         <!-- Form Logout untuk Admin -->
 <li class="nav-item">
   <a href="{{ route('admin.admin.logout') }}" 

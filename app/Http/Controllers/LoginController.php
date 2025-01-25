@@ -27,9 +27,9 @@ class LoginController extends Controller
             $user = Auth::user();
 
             // Logika pengecekan role
-            if ($user->hasRole('admin')) {
+            if ($user->role === 'admin') {
                 return redirect()->route('admin.dashboard');
-            } elseif ($user->hasRole('nasabah')) {
+            } elseif ($user->role === 'nasabah') {
                 return redirect()->route('nasabah.dashboard');
             }
 
@@ -56,26 +56,28 @@ class LoginController extends Controller
         $request->validate([
             'nama' => 'required',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6'
+            'password' => 'required|min:6',
+            'role' => 'required|in:admin,nasabah' // Validasi role hanya menerima admin atau nasabah
         ]);
 
-        // Buat user baru
+        // Buat user baru dengan role sesuai input
         $user = User::create([
             'name' => $request->nama,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => $request->role // Simpan role dari input
         ]);
 
-        // Assign role nasabah ke user baru
-        $user->assignRole('nasabah');
-
         // Login otomatis setelah registrasi
-        $credentials = $request->only('email', 'password');
+        Auth::login($user);
 
-        if (Auth::attempt($credentials)) {
-            return redirect()->route('nasabah.dashboard')->with('success', 'Registrasi dan login berhasil.');
-        } else {
-            return redirect()->route('login')->with('failed', 'Login otomatis gagal.');
+        // Redirect sesuai role
+        if ($user->role === 'admin') {
+            return redirect()->route('admin.dashboard')->with('success', 'Registrasi dan login berhasil sebagai Admin.');
+        } elseif ($user->role === 'nasabah') {
+            return redirect()->route('nasabah.dashboard')->with('success', 'Registrasi dan login berhasil sebagai Nasabah.');
         }
+
+        return redirect()->route('login')->with('failed', 'Login otomatis gagal.');
     }
 }

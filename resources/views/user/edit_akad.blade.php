@@ -16,33 +16,58 @@
       
         <!-- Custom Style -->
         <style>
-            body {
-                background-color: #000000; /* Latar belakang hitam */
-                color: #ffffff; /* Teks putih */
-            }
-    
-            .table {
-                color: #ffffff; /* Warna teks tabel putih */
-            }
-    
-            .thead-dark th {
-                background-color: #333333 !important; /* Header tabel warna abu-abu gelap */
-                color: #ffffff;
-            }
-    
-            .table-hover tbody tr:hover {
-                background-color: #000000; /* Efek hover tabel dengan warna abu-abu gelap */
-            }
-    
-            .btn-info {
-                background-color: #17a2b8; /* Warna tombol lihat surat */
-                border-color: #17a2b8;
-                color: #ffffff;
-            }
-        </style>
-      </head>
-      
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+          /* Sidebar background to white */
+       .main-sidebar {
+         background-color: #ffffff !important; /* Background putih */
+         color: #000000; /* Teks hitam untuk kontras */
+       }
+       
+       /* Sidebar link colors */
+       .main-sidebar .nav-link {
+         color: #000000 !important; /* Warna teks hitam */
+       }
+       
+       .main-sidebar .nav-link:hover {
+         background-color: #f0f0f0 !important; /* Warna hover abu-abu terang */
+         color: #007bff !important; /* Warna teks biru saat dihover */
+       }
+       
+       /* Active link styling */
+       .main-sidebar .nav-link.active {
+         background-color: #007bff !important; /* Background biru untuk link aktif */
+         color: #ffffff !important; /* Teks putih untuk link aktif */
+         border-radius: 5px; /* Sedikit melengkung untuk sudut */
+       }
+       
+       /* Sidebar header and footer */
+       .main-sidebar .brand-link {
+         background-color: #f4f4f4 !important; /* Background abu-abu terang */
+         color: #007bff !important; /* Teks biru */
+       }
+       
+       .main-sidebar .brand-link:hover {
+         background-color: #e6e6e6 !important; /* Hover abu-abu lebih gelap */
+       }
+       
+       /* Sidebar user panel */
+       .user-panel .info a {
+         color: #007bff !important; /* Warna teks biru */
+         font-weight: bold;
+       }
+       
+       .user-panel .info a:hover {
+         text-decoration: underline;
+       }
+       
+       /* Divider styling for separation */
+       .nav-sidebar > .nav-item > .nav-link {
+         border-bottom: 1px solid #f4f4f4 !important; /* Garis pemisah */
+       }
+       
+         </style>
+         
+       </head>
+       <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
 
   <!-- Preloader -->
@@ -249,6 +274,23 @@
                 <p>Akad</p>
             </a>
         </li>
+
+        <li class="nav-item">
+          <a href="{{ route('nasabah.nasabah.pembayaran') }}" class="nav-link">
+            <i class="nav-icon fas fa-credit-card"></i>
+            <p>Pembayaran</p>
+          </a>
+    
+    
+              <li class="nav-item">
+                <a href="{{ route('nasabah.nasabah.logout') }}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                  <i class="nav-icon fas fa-sign-out-alt"></i>
+                  <p>Logout</p>
+                </a>
+                <form id="logout-form" action="{{ route('nasabah.nasabah.logout') }}" method="POST" style="display: none;">
+                  @csrf
+                </form>
+              </li>
 
       </nav>
       <!-- /.sidebar-menu -->

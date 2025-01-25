@@ -17,35 +17,45 @@ class SimulasiController extends Controller
             'nama_barang' => 'required|string',
             'harga_barang' => 'required|numeric',
             'uang_muka' => 'required|numeric',
-            'tenor' => 'required|numeric',
+            'tenor' => 'required|integer|in:12,24,36,48,60', // Pastikan tenor valid
         ]);
-
-        // Data dari form
+    
         $nama_barang = $request->input('nama_barang');
         $harga_barang = $request->input('harga_barang');
         $uang_muka = $request->input('uang_muka');
-        $tenor = $request->input('tenor');
-
-        // Perhitungan simulasi
-        $biaya_proses = 500000; // Contoh biaya tetap
-        $notaris = 1000000; // Contoh biaya tetap
-        $survey = 200000; // Contoh biaya tetap
-        $harga_beli = $harga_barang - $uang_muka;
-        $angsuran_bulan = ($harga_beli + $biaya_proses + $notaris + $survey) / $tenor;
-        $total_biaya = $harga_beli + $biaya_proses + $notaris + $survey;
-
-        // Simpan hasil ke session dan redirect
+        $tenor = $request->input('tenor'); // Jumlah bulan yang dipilih pengguna
+    
+        $tenors = [
+            12 => 0.06,     
+            24 => 0.08, 
+            36 => 0.10, 
+            48 => 0.12, 
+            60 => 0.15,
+        ];
+    
+        if (!isset($tenors[$tenor])) {
+            return redirect()->back()->withErrors(['Tenor tidak valid.']);
+        }
+    
+        $margin = $tenors[$tenor];
+        $pembiayaan_setelah_dp = $harga_barang - $uang_muka;
+        $total_pembayaran = $pembiayaan_setelah_dp * (1 + $margin);
+        $angsuran_bulanan = $total_pembayaran / $tenor;
+    
+        $result = [
+            'bulan' => $tenor,
+            'pembiayaan_setelah_dp' => number_format($pembiayaan_setelah_dp, 0, ',', '.'),
+            'margin_keuntungan' => $margin * 100,
+            'total_pembayaran' => number_format($total_pembayaran, 0, ',', '.'),
+            'angsuran_bulanan' => number_format($angsuran_bulanan, 0, ',', '.'),
+        ];
+    
         return redirect()->route('nasabah.simulasi')->with('hasil', [
             'nama_barang' => $nama_barang,
             'harga_cash' => number_format($harga_barang, 0, ',', '.'),
-            'harga_beli' => number_format($harga_beli, 0, ',', '.'),
-            'tenor' => $tenor,
-            'angsuran_bulan' => number_format($angsuran_bulan, 0, ',', '.'),
             'uang_muka' => number_format($uang_muka, 0, ',', '.'),
-            'biaya_proses' => number_format($biaya_proses, 0, ',', '.'),
-            'notaris' => number_format($notaris, 0, ',', '.'),
-            'survey' => number_format($survey, 0, ',', '.'),
-            'total_biaya' => number_format($total_biaya, 0, ',', '.'),
+            'simulasi' => [$result], // Simpan hanya hasil yang relevan
         ]);
     }
+    
 }

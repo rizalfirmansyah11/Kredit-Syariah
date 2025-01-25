@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Akad; // Pastikan model ini ada
+use App\Models\Akad;
+use Illuminate\Support\Facades\Storage;
 
 class AkadController extends Controller
 {
@@ -26,81 +27,195 @@ class AkadController extends Controller
 
     public function suratAkad($id)
     {
-        $akad = Akad::findOrFail($id); // Mengambil data akad berdasarkan ID
-        return view('nasabah.user.surat', compact('akad')); // Mengarahkan ke view surat akad
+        $akad = Akad::findOrFail($id);
+        return view('user.lihatakad', compact('akad'));
     }
 
     public function index()
     {
-        // Ambil data akad berdasarkan ID pengguna yang sedang login
-        $akads = Akad::where('user_id', auth()->id())->get();
-    
-        // Kirim data ke view
+        $akads = Akad::all();
         return view('user.lihatakad', compact('akads'));
     }
 
     public function simpan(Request $request)
     {
-        // Validasi data
         $request->validate([
             'nama_lengkap' => 'required|string|max:255',
             'nik' => 'required|string|max:16',
             'alamat' => 'required|string',
             'telepon' => 'required|string|max:15',
             'jumlah_kredit' => 'required|numeric',
-            'jangka_waktu' => 'required|integer',
+            'jangka_waktu' => 'required|numeric',
+            'foto_benda' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-    
-        // Simpan data dengan user_id dari pengguna yang login
-        Akad::create([
+
+        $fotoPath = null;
+        if ($request->hasFile('foto_benda')) {
+            $fotoPath = $request->file('foto_benda')->store('public/foto_benda');
+        }
+
+        $akad = Akad::create([
             'nama_lengkap' => $request->nama_lengkap,
             'nik' => $request->nik,
             'alamat' => $request->alamat,
             'telepon' => $request->telepon,
             'jumlah_kredit' => $request->jumlah_kredit,
             'jangka_waktu' => $request->jangka_waktu,
-            'user_id' => auth()->id(), // Ambil ID pengguna login
+            'foto_benda' => $fotoPath ? str_replace('public/', '', $fotoPath) : null,
+            'user_id' => auth()->id(),
         ]);
-    
-        return redirect()->route('nasabah.akad')->with('success', 'Data akad berhasil disimpan!');
+
+        
+        return redirect()->route('nasabah.lihatakad', ['id' => $akad->id])->with('success', 'Akad berhasil dibuat!');
     }
-    
-    
-    // Menampilkan form edit akad
-public function edit($id)
+
+    public function edit($id)
+    {
+        $akad = Akad::findOrFail($id);
+        return view('user.edit_akad', compact('akad'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nama_lengkap' => 'required|string|max:255',
+            'nik' => 'required|string|max:16',
+            'alamat' => 'required|string',
+            'telepon' => 'required|string|max:15',
+            'jumlah_kredit' => 'required|numeric',
+            'jangka_waktu' => 'required|numeric',
+            'foto_benda' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $akad = Akad::findOrFail($id);
+
+        if ($request->hasFile('foto_benda')) {
+            if ($akad->foto_benda && Storage::exists('public/' . $akad->foto_benda)) {
+                Storage::delete('public/' . $akad->foto_benda);
+            }
+
+            $fotoPath = $request->file('foto_benda')->store('public/foto_benda');
+            $akad->foto_benda = str_replace('public/', '', $fotoPath);
+        }
+
+        $akad->update([
+            'nama_lengkap' => $request->nama_lengkap,
+            'nik' => $request->nik,
+            'alamat' => $request->alamat,
+            'telepon' => $request->telepon,
+            'jumlah_kredit' => $request->jumlah_kredit,
+            'jangka_waktu' => $request->jangka_waktu,
+        ]);
+
+        return redirect()->route('nasabah.dashboard')->with('success', 'Akad berhasil diperbarui!');
+    }
+
+    public function destroy($id)
+    {
+        $akad = Akad::findOrFail($id);
+        if ($akad->foto_benda && Storage::exists('public/' . $akad->foto_benda)) {
+            Storage::delete('public/' . $akad->foto_benda);
+        }
+
+        $akad->delete();
+
+        return redirect()->route('nasabah.akad')->with('success', 'Data akad berhasil dihapus.');
+    }
+
+    public function daftarAkad()
+    {
+        $akads = Akad::with('user')->where('status', 'pending')->get();
+        return view('admin.akads', compact('akads'));
+    }
+
+    public function acceptAkad($id)
+    {
+        $akad = Akad::findOrFail($id);
+        $akad->status = 'accepted';
+        $akad->save();
+
+        return redirect()->back()->with('success', 'Akad berhasil diterima.');
+    }
+
+    public function rejectAkad($id)
+    {
+        $akad = Akad::findOrFail($id);
+        $akad->status = 'rejected';
+        $akad->save();
+
+        return redirect()->back()->with('success', 'Akad berhasil ditolak.');
+    }
+
+    public function kirimAkad($id)
+    {
+        try {
+            $akad = Akad::findOrFail($id);
+            $akad->status = 'pending';
+            $akad->save();
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Akad berhasil dikirim!',
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Terjadi kesalahan saat mengirim akad.',
+            ]);
+        }
+    }
+
+    public function lihatakad($id)
 {
-    $akad = Akad::findOrFail($id);
-    return view('user.edit_akad', compact('akad'));
+    // Ambil data akad dari database
+    $akads = Akad::all();
+
+    // Kirim data ke view
+    return view('user.lihatakad', compact('akads'));
 }
 
-// Mengupdate data akad
-public function update(Request $request, $id)
-{
-    $request->validate([
-        'nama_lengkap' => 'required',
-        'nik' => 'required|numeric',
-        'alamat' => 'required',
-        'telepon' => 'required',
-        'jumlah_kredit' => 'required|numeric',
-        'jangka_waktu' => 'required|numeric',
-    ]);
 
-    $akad = Akad::findOrFail($id);
-    $akad->update($request->all());
+    public function pembayaran()
+    {
+        $bendaAccepted = Akad::where('status', 'accepted')->get();
+        return view('user.pembayaran', compact('bendaAccepted'));
+    }
 
-    return redirect()->route('nasabah.akad')->with('success', 'Data akad berhasil diperbarui.');
-}
+    public function prosesPembayaran(Request $request)
+    {
+        $bendaId = $request->input('benda');
 
-// Menghapus data akad
-public function destroy($id)
-{
-    $akad = Akad::findOrFail($id);
-    $akad->delete();
+        $request->validate([
+            'benda' => 'required|exists:akads,id',
+        ]);
 
-    return redirect()->route('nasabah.akad')->with('success', 'Data akad berhasil dihapus.');
-}
+        $akad = Akad::findOrFail($bendaId);
+        $akad->status = 'dibayar';
+        $akad->save();
 
+        return redirect()->route('nasabah.nasabah.pembayaran.proses')->with('success', 'Pembayaran berhasil diproses!');
+    }
 
-    
-    
+    public function showPembayaran()
+    {
+        $bendaAccepted = Akad::where('status', 'accepted')->get();
+        return view('nasabah.pembayaran', compact('bendaAccepted'));
+    }
+
+    public function sedangBerjalan()
+    {
+        $akads = Akad::where('status', 'sedang berjalan')->get();
+        return view('admin.akads.sedangBerjalan', compact('akads'));
+    }
+
+    public function riwayatAkads()
+    {
+        $akads = Akad::whereNotNull('riwayat')->get();
+
+        $akads->each(function ($akad) {
+            $akad->riwayat = $akad->riwayat ? json_decode($akad->riwayat, true) : [];
+        });
+
+        return view('admin.riwayat', compact('akads'));
+    }
 }

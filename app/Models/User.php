@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use App\Models\Akad; // Memastikan model Akad diimport
+
 
 class User extends Authenticatable
 {
@@ -24,7 +26,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role', // Tambahkan role di sini
     ];
+    
 
     /**
      * The attributes that should be hidden for serialization.
@@ -48,6 +52,6 @@ class User extends Authenticatable
     
     public function akads()
     {
-        return $this->hasMany(Akad::class);
+        return $this->hasMany(Akad::class);  // Pastikan model Akad sudah didefinisikan
     }
 }

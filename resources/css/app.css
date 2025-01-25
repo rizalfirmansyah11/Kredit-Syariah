@@ -66,3 +66,13 @@ h2 {
     background-color: #ffffff; /* Latar belakang tombol mengikuti halaman */
     padding: 10px 0; /* Tambahkan sedikit ruang */
   }  
+
+  h3 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    color: #000;
+}
+.body {
+  background-color: #ffffff !important; /* Latar belakang putih */
+  color: #000000 !important; /* Warna teks hitam */
+}

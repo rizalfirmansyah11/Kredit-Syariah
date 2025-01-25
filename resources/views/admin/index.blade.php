@@ -58,6 +58,7 @@
                                         <th>No</th>
                                         <th>Nama</th>
                                         <th>Email</th>
+                                        <th>Role</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -67,6 +68,13 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $d->name }}</td>
                                         <td>{{ $d->email }}</td>
+                                        <td>
+                                            @if ($d->role === 'admin')
+                                                <span style="color: green; font-weight: bold;">{{ $d->role }}</span>
+                                            @else
+                                                {{ $d->role }}
+                                            @endif
+                                        </td>
                                         <td>
                                             <!-- Edit Button -->
                                             <a href="{{ route('admin.user.edit', ['id' => $d->id]) }}" class="btn btn-primary">
