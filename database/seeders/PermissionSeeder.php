@@ -2,57 +2,27 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use App\Models\User;
 
 class PermissionSeeder extends Seeder
 {
-    public function run(): void
+    public function run()
     {
-        // Membuat atau mendapatkan role admin
-        $role_admin = Role::updateOrCreate(
-            ['name' => 'admin'],
-            ['name' => 'admin']
-        );
+        // Buat role
+        $adminRole = Role::firstOrCreate(['name' => 'admin', 'guard_name' => 'web']);
+        $nasabahRole = Role::firstOrCreate(['name' => 'nasabah', 'guard_name' => 'web']);
 
-        // Membuat atau mendapatkan role nasabah
-        $role_nasabah = Role::updateOrCreate(
-            ['name' => 'nasabah'],
-            ['name' => 'nasabah']
-        );
+        // Buat user admin dan nasabah
+        $adminUser = User::firstOrCreate(['id' => 1], ['name' => 'Admin User', 'email' => 'admin@example.com', 'password' => bcrypt('password')]);
+        $nasabahUser = User::firstOrCreate(['id' => 2], ['name' => 'Nasabah User', 'email' => 'nasabah@example.com', 'password' => bcrypt('password')]);
 
-        // Membuat atau mendapatkan permission
-        $permission = Permission::updateOrCreate(
-            ['name' => 'view_dashboard'],
-            ['name' => 'view_dashboard']
-        );
+        // Assign role ke user
+        $adminUser->assignRole('admin');
+        $nasabahUser->assignRole('nasabah');
 
-        $permission2 = Permission::updateOrCreate(
-            ['name' => 'view_chart_on_dashboard'],
-            ['name' => 'view_chart_on_dashboard']
-        );
-
-        // Memberikan permission kepada role
-        $role_admin->givePermissionTo($permission);
-        $role_admin->givePermissionTo($permission2);
-        $role_nasabah->givePermissionTo($permission2);
-
-        // Menetapkan role pada pengguna yang ada
-        $user = User::find(1);
-        $user2 = User::find(2);
-
-        $user->assignRole('admin');
-        $user2->assignRole('nasabah');
-
-        // Menambahkan pengguna baru
-        $user3 = User::create([
-            'name' => 'New Nasabah',
-            'email' => 'newnasabah@example.com',
-            'password' => bcrypt('password123'), // Jangan lupa enkripsi password
-        ]);
-        $user3->assignRole('nasabah');
+        $this->command->info('PermissionSeeder sukses dijalankan!');
     }
 }

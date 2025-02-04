@@ -30,9 +30,10 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        // Pastikan role tersedia di database
-        if (Role::where('name', $request->role)->exists()) {
-            $user->assignRole($request->role);
+        // **Pastikan role tersimpan dengan benar**
+        $role = Role::where('name', $request->role)->first();
+        if ($role) {
+            $user->assignRole($role);
         } else {
             return redirect()->back()->with('error', 'Role tidak ditemukan.');
         }
