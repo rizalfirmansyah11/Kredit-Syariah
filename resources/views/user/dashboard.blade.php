@@ -372,6 +372,14 @@ body {
       </a>
     </li>
 
+    {{-- <!-- Katalog Barang -->
+    <li class="nav-item" style="margin-bottom: 10px;">
+      <a href="{{ route('nasabah.nasabah.katalog') }}" class="nav-link">
+        <i class="nav-icon fas fa-box-open"></i>
+        <p>Katalog Barang</p>
+      </a>
+    </li> --}}
+
     <!-- Form Logout untuk Nasabah -->
     <li class="nav-item">
       <a href="{{ route('nasabah.nasabah.logout') }}" 
@@ -395,6 +403,7 @@ body {
     <!-- /.sidebar -->
   </aside>
 <!-- Content Wrapper. Contains page content -->
+<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper" style="padding: 0; margin: 0; background: #f8f9fa;">
   <section class="content">
     <div class="container-fluid p-4">
@@ -402,8 +411,8 @@ body {
       <!-- Header Section -->
       <div class="row mb-4">
         <div class="col-md-12">
-          <div class="card shadow-lg p-5 text-center bg-primary text-white">
-            <h1 class="mb-3">Kredit Syariah</h1>
+          <div class="card shadow-lg p-5 text-center bg-primary text-white rounded-4">
+            <h1 class="mb-3 fw-bold">Kredit Syariah</h1>
             <h3 class="mb-3">Membangun Masa Depan dengan Prinsip Islami</h3>
             <p class="mb-0">
               Kredit syariah adalah layanan keuangan yang berlandaskan prinsip-prinsip syariah, seperti akad yang sesuai dengan hukum Islam.
@@ -415,82 +424,71 @@ body {
       <!-- Benefits Section -->
       <div class="row">
         <div class="col-md-12">
-          <div class="card shadow-sm p-5">
-            <h2 class="mb-5 text-center text-primary">Manfaat Kredit Syariah</h2>
-            <ul class="list-unstyled">
-
+          <div class="card shadow-sm p-5 rounded-4">
+            <h2 class="mb-5 text-center text-primary fw-bold">Manfaat Kredit Syariah</h2>
+            <div class="row">
+              
               <!-- Transparansi -->
-              <li class="mb-5 d-flex align-items-start">
-                <div class="me-3">
-                  <img src="{{ asset('lte/dist/img/transparency.png') }}" alt="Transparansi" style="width: 70px; height: 70px; filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.2));">
+              <div class="col-md-6 mb-4">
+                <div class="card p-4 shadow-sm border-0 rounded-3">
+                  <div class="d-flex align-items-start">
+                    <img src="{{ asset('lte/dist/img/transparency.png') }}" alt="Transparansi" class="me-3" style="width: 70px; height: 70px;">
+                    <div>
+                      <h5 class="text-primary fw-bold">Prinsip Transparansi</h5>
+                      <p class="mb-0">Semua transaksi dilakukan dengan prinsip transparansi penuh.</p>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h5 class="text-primary">Prinsip Transparansi</h5>
-                  <p class="mb-0">
-                    Semua transaksi dilakukan dengan prinsip transparansi penuh, sehingga semua pihak memahami hak dan kewajiban masing-masing.
-                  </p>
-                </div>
-              </li>
+              </div>
 
               <!-- Tanpa Riba -->
-              <li class="mb-5 d-flex align-items-start">
-                <div class="me-3">
-                  <img src="{{ asset('lte/dist/img/no-riba.png') }}" alt="Tanpa Riba" style="width: 70px; height: 70px; filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.2));">
+              <div class="col-md-6 mb-4">
+                <div class="card p-4 shadow-sm border-0 rounded-3">
+                  <div class="d-flex align-items-start">
+                    <img src="{{ asset('lte/dist/img/no-riba.png') }}" alt="Tanpa Riba" class="me-3" style="width: 70px; height: 70px;">
+                    <div>
+                      <h5 class="text-primary fw-bold">Tanpa Riba</h5>
+                      <p class="mb-0">Kredit syariah tidak melibatkan bunga (riba) yang dilarang dalam Islam.</p>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h5 class="text-primary">Tanpa Riba</h5>
-                  <p class="mb-0">
-                    Kredit syariah tidak melibatkan bunga (riba) yang dilarang dalam Islam, sehingga memberikan solusi keuangan yang sesuai dengan prinsip syariah.
-                  </p>
-                </div>
-              </li>
+              </div>
 
               <!-- Akad yang Jelas -->
-              <li class="mb-5 d-flex align-items-start">
-                <div class="me-3">
-                  <img src="{{ asset('lte/dist/img/contract.png') }}" alt="Akad Jelas" style="width: 70px; height: 70px; filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.2));">
+              <div class="col-md-6 mb-4">
+                <div class="card p-4 shadow-sm border-0 rounded-3">
+                  <div class="d-flex align-items-start">
+                    <img src="{{ asset('lte/dist/img/contract.png') }}" alt="Akad Jelas" class="me-3" style="width: 70px; height: 70px;">
+                    <div>
+                      <h5 class="text-primary fw-bold">Akad yang Jelas</h5>
+                      <p class="mb-0">Setiap transaksi berdasarkan akad yang sah, seperti murabaha, mudharabah, dan musyarakah.</p>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h5 class="text-primary">Akad yang Jelas</h5>
-                  <p class="mb-0">
-                    Setiap transaksi dilakukan berdasarkan akad yang sah, seperti akad murabaha, mudharabah, musyarakah, dan lain-lain.
-                  </p>
-                </div>
-              </li>
+              </div>
 
               <!-- Partisipasi Bersama -->
-              <li class="mb-5 d-flex align-items-start">
-                <div class="me-3">
-                  <img src="{{ asset('lte/dist/img/group.png') }}" alt="Partisipasi" style="width: 70px; height: 70px; filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.2));">
+              <div class="col-md-6 mb-4">
+                <div class="card p-4 shadow-sm border-0 rounded-3">
+                  <div class="d-flex align-items-start">
+                    <img src="{{ asset('lte/dist/img/group.png') }}" alt="Partisipasi" class="me-3" style="width: 70px; height: 70px;">
+                    <div>
+                      <h5 class="text-primary fw-bold">Partisipasi Bersama</h5>
+                      <p class="mb-0">Nasabah memiliki partisipasi dalam proyek atau bisnis yang dibiayai.</p>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h5 class="text-primary">Partisipasi Bersama</h5>
-                  <p class="mb-0">
-                    Nasabah memiliki partisipasi dalam proyek atau bisnis yang dibiayai, menciptakan hubungan yang lebih adil dan berimbang.
-                  </p>
-                </div>
-              </li>
+              </div>
 
-              <!-- Keberkahan Hasil -->
-              <li class="d-flex align-items-start">
-                <div class="me-3">
-                  <img src="{{ asset('lte/dist/img/bless.png') }}" alt="Keberkahan" style="width: 70px; height: 70px; filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.2));">
-                </div>
-                <div>
-                  <h5 class="text-primary">Keberkahan Hasil</h5>
-                  <p class="mb-0">
-                    Hasil dari kegiatan bisnis tidak hanya diukur berdasarkan keuntungan finansial, tetapi juga aspek keberkahan dan kebermanfaatan bagi masyarakat sekitar.
-                  </p>
-                </div>
-              </li>
-            </ul>
+            </div>
 
             <!-- Footer CTA -->
             <div class="text-center mt-5">
-              <a href="#" class="btn btn-lg btn-primary px-5 py-3" style="border-radius: 50px; font-size: 1.2rem;">
+              <a href="#" class="btn btn-lg btn-primary px-5 py-3 rounded-pill fw-bold">
                 Pelajari Lebih Lanjut
               </a>
             </div>
+
           </div>
         </div>
       </div>

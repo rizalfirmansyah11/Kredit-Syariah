@@ -2,11 +2,14 @@
 
 use App\Http\Controllers\AkadController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KatalogController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SimulasiController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use KatalogController as GlobalKatalogController;
 
 /*
 |-------------------------------------------------------------------------- 
@@ -27,8 +30,9 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::POST('/login-proses', [LoginController::class, 'login_proses'])->name('login-proses');
 
 // Register Routes
-Route::get('/register', [LoginController::class, 'register'])->name('register');
-Route::POST('/register-proses', [LoginController::class, 'register_proses'])->name('register-proses');
+
+Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('register');
+Route::post('/register-proses', [RegisterController::class, 'registerProses'])->name('register-proses');
 
 // Logout Route
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
@@ -84,7 +88,8 @@ Route::group(['prefix' => 'nasabah', 'middleware' => ['auth', 'role:nasabah'], '
 
 
     Route::post('/kirim-akad/{id}', [AkadController::class, 'kirimAkad'])->name('kirimAkad');
-    
+    // Route::get('/katalog', [KatalogController::class, 'katalog'])->name('nasabah.katalog');
+
 
   
     // Nasabah Logout Route
