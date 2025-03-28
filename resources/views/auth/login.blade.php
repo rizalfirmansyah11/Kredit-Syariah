@@ -25,7 +25,7 @@
 <div class="login-box">
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <img src="{{ asset('lte/dist/img/logonyar.png') }}" alt="Cusana Logo" class="img-fluid mb-3" style="max-height: 100px;">
+      <img src="{{ asset('lte/dist/img/logonyar3.png') }}" alt="Cusana Logo" class="img-fluid mb-3" style="max-height: 100px;">
       <a href="#" class="h1 d-block mt-2 islamic-font text-primary"><b>Kredit Syariah</b></a>
     </div>
     <div class="card-body">

@@ -25,11 +25,14 @@
 <div class="register-box">
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <img src="{{ asset('lte/dist/img/logonyar.png') }}" alt="Cusana Logo" class="img-fluid mb-3" style="max-height: 100px;">
+      <img src="{{ asset('lte/dist/img/logonyar3.png') }}" alt="Cusana Logo" class="img-fluid mb-3" style="max-height: 100px;">
       <a href="#" class="h1 d-block mt-2 islamic-font text-primary"><b>Kredit Syariah</b></a>
     </div>
     <div class="card-body">
-      <p class="login-box-msg">Register a new membership</p>
+      <p class="login-box-msg islamic-font" style="font-size: 1.2rem; color: #1e3a8a;">
+        <b>Registrasi Pengguna Baru</b>
+      </p>
+      
 
       <form action="{{ route('register-proses') }}" method="post">
         @csrf
@@ -54,6 +57,30 @@
           </div>
         </div>
         @error('email')
+        <small>{{ $message }}</small>
+        @enderror
+
+        <div class="input-group mb-3">
+          <input type="text" name="phone" class="form-control" placeholder="Phone Number">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-phone"></span>
+            </div>
+          </div>
+        </div>
+        @error('phone')
+        <small>{{ $message }}</small>
+        @enderror
+
+        <div class="input-group mb-3">
+          <input type="text" name="address" class="form-control" placeholder="Full Address">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-map-marker-alt"></span>
+            </div>
+          </div>
+        </div>
+        @error('address')
         <small>{{ $message }}</small>
         @enderror
 
@@ -106,7 +133,7 @@
       </form>
 
       <p class="mt-3 mb-1">
-        <a href="{{ route('login') }}">I already have a membership</a>
+        <a href="{{ route('login') }}">Sudah punya akun? Masuk di sini</a>
       </p>
     </div>
   </div>

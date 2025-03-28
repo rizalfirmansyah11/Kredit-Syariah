@@ -25,19 +25,28 @@
   <link rel="stylesheet" href="{{ asset('lte/plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('lte/plugins/summernote/summernote-bs4.min.css') }}">
+ 
 
   <style>
     .main-sidebar {
-      background-color: #05bb05 !important; /* Hijau tua */
+      background-color: #009990!important; /* Hijau tua */
     }
     .main-sidebar .nav-link, 
     .main-sidebar .brand-link, 
     .main-sidebar .user-panel .info a {
       color: white !important; /* Mengubah warna teks menjadi putih */
     }
+
+    .welcome-text {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: #2E7D32; /* Hijau tua profesional */
+}
   
     .main-sidebar .nav-link:hover {
       color: #ccc !important; /* Mengubah warna teks saat hover menjadi abu-abu terang */
+      
     }
   </style>
 
@@ -48,7 +57,9 @@
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="lte/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+    <img class="animation__shake" src="{{ asset('lte/dist/img/logonyar.png') }}" alt="Kredit Syariah" height="60" width="60">
+
+
   </div>
 
   <!-- Navbar -->
@@ -59,134 +70,11 @@
     <li class="nav-item">
       <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
     </li>
-    <li class="nav-item d-none d-sm-inline-block">
-      <a href="index3.html" class="nav-link">Home</a>
-    </li>
-    <li class="nav-item d-none d-sm-inline-block">
-      <a href="#" class="nav-link">Contact</a>
-    </li>
+   
   </ul>
 
   <!-- Right navbar links -->
-  <ul class="navbar-nav ml-auto">
-    <!-- Navbar Search -->
-    <li class="nav-item">
-      <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-        <i class="fas fa-search"></i>
-      </a>
-      <div class="navbar-search-block">
-        <form class="form-inline">
-          <div class="input-group input-group-sm">
-            <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-            <div class="input-group-append">
-              <button class="btn btn-navbar" type="submit">
-                <i class="fas fa-search"></i>
-              </button>
-              <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                <i class="fas fa-times"></i>
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </li>
-
-    <!-- Messages Dropdown Menu -->
-    <li class="nav-item dropdown">
-      <a class="nav-link" data-toggle="dropdown" href="#">
-        <i class="far fa-comments"></i>
-        <span class="badge badge-danger navbar-badge">3</span>
-      </a>
-      <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-        <a href="#" class="dropdown-item">
-          <!-- Message Start -->
-          <div class="media">
-            <img src="lte/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-            <div class="media-body">
-              <h3 class="dropdown-item-title">
-                Brad Diesel
-                <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-              </h3>
-              <p class="text-sm">Call me whenever you can...</p>
-              <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-            </div>
-          </div>
-          <!-- Message End -->
-        </a>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item">
-          <!-- Message Start -->
-          <div class="media">
-            <img src="lte/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-            <div class="media-body">
-              <h3 class="dropdown-item-title">
-                John Pierce
-                <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-              </h3>
-              <p class="text-sm">I got your message bro</p>
-              <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-            </div>
-          </div>
-          <!-- Message End -->
-        </a>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item">
-          <!-- Message Start -->
-          <div class="media">
-            <img src="lte/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-            <div class="media-body">
-              <h3 class="dropdown-item-title">
-                Nora Silvester
-                <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-              </h3>
-              <p class="text-sm">The subject goes here</p>
-              <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-            </div>
-          </div>
-          <!-- Message End -->
-        </a>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-      </div>
-    </li>
-    <!-- Notifications Dropdown Menu -->
-    <li class="nav-item dropdown">
-      <a class="nav-link" data-toggle="dropdown" href="#">
-        <i class="far fa-bell"></i>
-        <span class="badge badge-warning navbar-badge">15</span>
-      </a>
-      <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-        <span class="dropdown-item dropdown-header">15 Notifications</span>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item">
-          <i class="fas fa-envelope mr-2"></i> 4 new messages
-          <span class="float-right text-muted text-sm">3 mins</span>
-        </a>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item">
-          <i class="fas fa-users mr-2"></i> 8 friend requests
-          <span class="float-right text-muted text-sm">12 hours</span>
-        </a>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item">
-          <i class="fas fa-file mr-2"></i> 3 new reports
-          <span class="float-right text-muted text-sm">2 days</span>
-        </a>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-      </div>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-        <i class="fas fa-expand-arrows-alt"></i>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
-        <i class="fas fa-th-large"></i>
-      </a>
-    </li>
-  </ul>
+  
 </nav>
 <!-- /.navbar -->
   <!-- /.navbar -->
@@ -195,9 +83,13 @@
    <!-- Main Sidebar Container -->
  <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
-  <a href="index3.html" class="brand-link">
-    <img src="{{ asset('lte/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-    <span class="brand-text font-weight-light">AdminLTE 3</span>
+  <a style="display: flex; align-items: center; margin: 0; padding: 10px 15px; background-color: #009990;">
+    <img src="{{ asset('lte/dist/img/logonyar3.png') }}" 
+         class="brand-image img-circle elevation-3" 
+         style="opacity: 1; width: 50px; height: 50px; object-fit: contain;">
+         <span class="brand-text font-weight-bold" 
+         style="font-size: 15px; color: #ffffff; margin-left: 15px; font-family: 'Scheherazade', serif;">Kredit Syariah</span>
+  
   </a>
 
   <!-- Sidebar -->
@@ -205,12 +97,16 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="{{ asset('lte/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
-      </div>
-      <div class="info">
-        <a href="#" class="d-block">Alexander Pierce</a>
-      </div>
+        <i class="fas fa-user-circle fa-2x text-white"></i>
     </div>
+    
+    <div class="info">
+      <a class="d-block welcome-text">
+          Welcome, Admin {{ Auth::user()->name ?? 'Guest' }}
+      </a>
+  </div>
+  </div>
+  
 
     <!-- SidebarSearch Form -->
     <div class="form-inline">
@@ -225,58 +121,79 @@
     </div>
 
     <!-- Sidebar Menu -->
-    <nav class="mt-2">
-      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <!-- Add icons to the links using the .nav-icon class
-             with font-awesome or any other icon font library -->
-             <li class="nav-item">
-              <a href="{{ route('admin.dashboard') }}" class="nav-link">
-                <i class="nav-icon fas fa-home"></i>
-                <p>
-                  Dashboard
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{ route('admin.index') }}" class="nav-link">
-                  <i class="nav-icon fas fa-users"></i> <!-- Mengganti ikon menjadi ikon user grup -->
-                  <p>
-                      User
-                  </p>
-              </a>
-          </li>
+    <!-- Sidebar Menu -->
+<nav class="mt-2">
+  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+    <!-- Dashboard -->
+    <li class="nav-item">
+      <a href="{{ route('admin.dashboard') }}" class="nav-link">
+        <i class="nav-icon fas fa-tachometer-alt"></i> <!-- Ikon dashboard -->
+        <p>Dashboard</p>
+      </a>
+    </li>
 
+    <!-- Produk -->
+    <li class="nav-item">
+      <a href="{{ route('admin.admin.produk') }}" class="nav-link">
+        <i class="nav-icon fas fa-box"></i> <!-- Ikon produk -->
+        <p>Produk</p>
+      </a>
+    </li>
 
-          <li class="nav-item dropdown">
-            <a href="{{ route('admin.admin.akads') }}" class="nav-link dropdown-toggle">
-              <i class="nav-icon fas fa-file-signature"></i> <!-- Ikon untuk akad -->
-              <p>Akad</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ route('admin.admin.akads.riwayat') }}" class="nav-link">
-                <i class="nav-icon fas fa-history"></i> <!-- Ikon untuk riwayat -->
-                <p>Riwayat Akad</p>
-            </a>
-        </li>
-        
+    <!-- Simulasi Kredit -->
+    <li class="nav-item">
+      <a href="{{ route('admin.admin.simulasi') }}" class="nav-link">
+        <i class="nav-icon fas fa-calculator"></i> <!-- Ikon kalkulator -->
+        <p>Simulasi Kredit</p>
+      </a>
+    </li>
 
+    {{-- <!-- Manajemen Margin Kategori -->
+    <li class="nav-item">
+      <a href="{{ route('admin.admin.marginKategori.index') }}" class="nav-link">
+        <i class="nav-icon fas fa-percentage"></i> <!-- Ikon persentase -->
+        <p>Margin Management</p>
+      </a>
+    </li> --}}
 
+    <!-- User Management -->
+    <li class="nav-item">
+      <a href="{{ route('admin.index') }}" class="nav-link">
+        <i class="nav-icon fas fa-user-cog"></i> <!-- Ikon user management -->
+        <p>User Management</p>
+      </a>
+    </li>
 
-        <!-- Form Logout untuk Admin -->
-<li class="nav-item">
-  <a href="{{ route('admin.admin.logout') }}" 
-     class="nav-link" 
-     onclick="event.preventDefault(); document.getElementById('admin-logout-form').submit();">
-    <i class="nav-icon fas fa-sign-out-alt"></i> <!-- Ikon logout -->
-    <p>Logout</p>
-  </a>
-  <form id="admin-logout-form" action="{{ route('admin.admin.logout') }}" method="POST" style="display: none;">
-    @csrf <!-- Token CSRF -->
-  </form>
-</li>
-          
-            
+    <!-- Akad -->
+    <li class="nav-item">
+      <a href="{{ route('admin.admin.akads') }}" class="nav-link">
+        <i class="nav-icon fas fa-handshake"></i> <!-- Ikon akad (handshake) -->
+        <p>Akad</p>
+      </a>
+    </li>
+
+    <!-- Riwayat Akad -->
+    <li class="nav-item">
+      <a href="{{ route('admin.admin.akads.riwayat') }}" class="nav-link">
+        <i class="nav-icon fas fa-history"></i> <!-- Ikon riwayat -->
+        <p>Riwayat Akad</p>
+      </a>
+    </li>
+
+    <!-- Logout -->
+    <li class="nav-item">
+      <a href="{{ route('admin.admin.logout') }}" class="nav-link" 
+         onclick="event.preventDefault(); document.getElementById('admin-logout-form').submit();">
+        <i class="nav-icon fas fa-sign-out-alt"></i> <!-- Ikon logout -->
+        <p>Logout</p>
+      </a>
+      <form id="admin-logout-form" action="{{ route('admin.admin.logout') }}" method="POST" style="display: none;">
+        @csrf
+      </form>
+    </li>
+  </ul>
+</nav>
+
             
          
       

@@ -8,20 +8,23 @@ class Akad extends Model
 {
     use HasFactory;
 
+    protected $table = 'akads'; // Pastikan nama tabel sesuai
+
     protected $fillable = [
         'nama_lengkap',
         'nik',
         'alamat',
         'telepon',
-        'email',
-        'jenis_benda',
-        'merek_benda',
-        'tahun_pembuatan',
-        'harga_benda',
         'foto_benda',
-        'jumlah_kredit',
-        'jangka_waktu',
-        'tanggal_pembuatan', // Pastikan kolom ini dapat diisi
+        'uang_muka',
+        'tenor',
+        'slip_gaji',
+        'ktp',
+        'kartu_keluarga',
+        'harga_benda',
+        'harga_akad',
+        'status',
+        'user_id'
     ];
     
 

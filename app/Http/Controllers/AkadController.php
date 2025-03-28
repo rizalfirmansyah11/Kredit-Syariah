@@ -20,10 +20,15 @@ class AkadController extends Controller
         return view('user.akad');
     }
 
-    public function buatakad()
-    {
-        return view('user.buatakad');
-    }
+    // public function buatakad(Request $request)
+    // {
+    //     $nama_produk = $request->query('nama_produk', ''); // Ambil dari URL atau kosong jika tidak ada
+    //     $harga_produk = $request->query('harga_produk', ''); 
+    
+    //     return view('user.buatakad', compact('nama_produk', 'harga_produk'));
+    // }
+    
+    
 
     public function suratAkad($id)
     {
@@ -38,36 +43,49 @@ class AkadController extends Controller
     }
 
     public function simpan(Request $request)
-    {
-        $request->validate([
-            'nama_lengkap' => 'required|string|max:255',
-            'nik' => 'required|string|max:16',
-            'alamat' => 'required|string',
-            'telepon' => 'required|string|max:15',
-            'jumlah_kredit' => 'required|numeric',
-            'jangka_waktu' => 'required|numeric',
-            'foto_benda' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+{
+    $request->validate([
+        'nama_lengkap' => 'required|string|max:255',
+        'nik' => 'required|string|max:16',
+        'alamat' => 'required|string',
+        'telepon' => 'required|string|max:15',
+        'foto_benda' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'uang_muka' => 'required|numeric',
+        'tenor' => 'required|numeric',
+        'slip_gaji' => 'nullable|file|mimes:pdf,jpeg,png,jpg|max:2048',
+        'ktp' => 'nullable|file|mimes:pdf,jpeg,png,jpg|max:2048',
+        'kartu_keluarga' => 'nullable|file|mimes:pdf,jpeg,png,jpg|max:2048',
+        'harga_benda' => 'required|numeric',
+        'harga_akhir' => 'required|numeric',
+        'status' => 'nullable|string|max:255',
+    ]);
 
-        $fotoPath = null;
-        if ($request->hasFile('foto_benda')) {
-            $fotoPath = $request->file('foto_benda')->store('public/foto_benda');
-        }
+    // Menyimpan file jika ada
+    $fotoPath = $request->hasFile('foto_benda') ? $request->file('foto_benda')->store('public/foto_benda') : null;
+    $slipGajiPath = $request->hasFile('slip_gaji') ? $request->file('slip_gaji')->store('public/dokumen') : null;
+    $ktpPath = $request->hasFile('ktp') ? $request->file('ktp')->store('public/dokumen') : null;
+    $kkPath = $request->hasFile('kartu_keluarga') ? $request->file('kartu_keluarga')->store('public/dokumen') : null;
 
-        $akad = Akad::create([
-            'nama_lengkap' => $request->nama_lengkap,
-            'nik' => $request->nik,
-            'alamat' => $request->alamat,
-            'telepon' => $request->telepon,
-            'jumlah_kredit' => $request->jumlah_kredit,
-            'jangka_waktu' => $request->jangka_waktu,
-            'foto_benda' => $fotoPath ? str_replace('public/', '', $fotoPath) : null,
-            'user_id' => auth()->id(),
-        ]);
+    $akad = Akad::create([
+        'nama_lengkap' => $request->nama_lengkap,
+        'nik' => $request->nik,
+        'alamat' => $request->alamat,
+        'telepon' => $request->telepon,
+        'foto_benda' => $fotoPath ? str_replace('public/', '', $fotoPath) : null,
+        'uang_muka' => $request->uang_muka,
+        'tenor' => $request->tenor,
+        'slip_gaji' => $slipGajiPath ? str_replace('public/', '', $slipGajiPath) : null,
+        'ktp' => $ktpPath ? str_replace('public/', '', $ktpPath) : null,
+        'kartu_keluarga' => $kkPath ? str_replace('public/', '', $kkPath) : null,
+        'harga_benda' => $request->harga_benda,
+        'harga_akhir' => $request->harga_akhir,
+        'status' => 'pending', // Default status
+        'user_id' => auth()->id(),
+    ]);
 
-        
-        return redirect()->route('nasabah.lihatakad', ['id' => $akad->id])->with('success', 'Akad berhasil dibuat!');
-    }
+    return redirect()->route('nasabah.lihatakad', ['id' => $akad->id])->with('success', 'Akad berhasil dibuat!');
+}
+
 
     public function edit($id)
     {

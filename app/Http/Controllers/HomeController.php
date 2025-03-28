@@ -7,119 +7,124 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Product;
+
 
 class HomeController extends Controller
 {
+    // Menampilkan dashboard admin
     public function dashboard()
     {
-        // Logika untuk halaman dashboard
-        return view('admin.dashboard');
+      return view('admin.dashboard');
     }
 
-
-    public function index(){
-
-        $data = User::get();
-
-       return view('admin.index',compact('data'));
-    }
-
-    public function create(){
-        return view('admin.create');
-    }
-
-    public function store(Request $request)
+    public function nasabahDashboard()
 {
-    // Validasi input
-    $validator = Validator::make($request->all(),[
-        'email' => 'required|email',
-        'name' => 'required',
-        'password' => 'required',
-    ]);
+    $products = Product::all(); // Ambil semua produk dari database
+    return view('user.dashboard', compact('products'));
+}
 
-    // Jika validasi gagal, kembalikan dengan pesan error
-    if($validator->fails()) {
-        return redirect()->back()->withInput()->withErrors($validator);
+    
+
+    // Menampilkan daftar user (index)
+    public function index(Request $request)
+    {
+        $search = $request->input('search');
+    
+        $query = User::orderBy('id', 'asc');
+    
+        if ($search) {
+            $query->where('name', 'like', "%$search%")
+                  ->orWhere('phone', 'like', "%$search%");
+        }
+    
+        $allUsers = User::orderBy('id', 'asc')->get();
+        $data = $query->paginate(10);
+    
+        $nomorUrutMapping = [];
+        foreach ($allUsers as $index => $user) {
+            $nomorUrutMapping[$user->id] = $index + 1;
+        }
+    
+        foreach ($data as $user) {
+            $user->nomor_urut = $nomorUrutMapping[$user->id] ?? '-';
+        }
+    
+        return view('admin.index', compact('data'));
     }
 
-    // Menyimpan data user (jika diperlukan)
-    $data['email'] = $request->email;
-    $data['name'] = $request->name;
-    $data['password'] = Hash::make($request->password);
-    User::create($data);
+    // Menyimpan data user
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email'    => 'required|email|unique:users,email',
+            'name'     => 'required|string|max:255',
+            'password' => 'required|min:6',
+            'phone'    => 'required|string|max:20',
+            'address'  => 'required|string|max:255',
+            'role'     => 'required|in:admin,nasabah',
+        ]);
 
-    // Simpan data akad ke database
-    $akad = new Akad();
-    $akad->nama_lengkap = $request->input('nama_lengkap');
-    $akad->nik = $request->input('nik');
-    $akad->alamat = $request->input('alamat');
-    $akad->telepon = $request->input('telepon');
-    $akad->jenis_benda = $request->input('jenis_benda');
-    $akad->merek = $request->input('merek');
-    $akad->tahun_pembuatan = $request->input('tahun_pembuatan');
-    $akad->nomor_seri = $request->input('nomor_seri');
-    $akad->harga_benda = $request->input('harga_benda');
-    $akad->jumlah_kredit = $request->input('jumlah_kredit');
-    $akad->jangka_waktu = $request->input('jangka_waktu');
-    $akad->angsuran_per_bulan = $request->input('angsuran_per_bulan');
-    $akad->uang_muka = $request->input('uang_muka');
-    $akad->save();
+        if ($validator->fails()) {
+            return redirect()->back()->withInput()->withErrors($validator);
+        }
 
-    // Menambahkan flash message setelah akad berhasil disimpan
-    session()->flash('success', 'Akad berhasil dibuat!');
+        try {
+            \DB::beginTransaction();
 
-    // Redirect ke halaman surat untuk melihat akad
-    return redirect()->route('nasabah.akad.surat', ['id' => $akad->id]);
+            User::create([
+                'email'    => $request->email,
+                'name'     => $request->name,
+                'password' => Hash::make($request->password),
+                'phone'    => $request->phone,
+                'address'  => $request->address,
+                'role'     => $request->role,
+            ]);
+
+            \DB::commit();
+            return redirect()->route('admin.index')->with('success', 'User berhasil ditambahkan!');
+        } catch (\Exception $e) {
+            \DB::rollBack();
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
+    }
+
+    public function edit($id)
+{
+    $data = User::findOrFail($id);
+    return view('admin.edit', compact('data'));
 }
 
 
-    public function edit(Request $request,$id){
-        $data = User::find($id);
-
-       return view('admin.edit', compact('data'));
-    }
-
-    public function update(Request $request,$id){
-        $validator = Validator::make($request->all(),[
-            'email' => 'required|email',
-            'name'      => 'required',
-            'password' => 'nullable',
-           ]);
-           if($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
+    // Update data user
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
     
-           $data['email'] = $request->email;
-           $data['name'] = $request->name;
-
-           if($request->password){
-            $data['password'] = Hash::make($request->password);
-           }
-
-           User::whereId($id)->update($data);
+        // Validasi data
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'phone' => 'nullable|string|max:15',
+            'address' => 'nullable|string',
+            'role' => 'required|in:admin,nasabah',
+        ]);
     
-           return redirect()->route('admin.index');
+        // Update data user
+        $user->update($validatedData);
+    
+        return redirect()->route('admin.index')->with('success', 'Data berhasil diperbarui!');
     }
+    
+    
 
-    public function delete(Request $request,$id){
+    // Hapus data user
+    public function delete(Request $request, $id)
+    {
         $data = User::find($id);
-
-        if($data){
+        if ($data) {
             $data->delete();
         }
-
-        return redirect()->route('admin.index');
+        return redirect()->route('admin.index')->with('success', 'Data user berhasil dihapus!');
     }
-    public function nasabahDashboard()
-    {
-   
-        //  NASABAH
-    return view('user.dashboard');
-    }   
-    public function simulasi()
-    {
-        return view('user.simulasi');
-    }
-    public function akad(){
-        return view('user.akad');
-    }
-  
 }

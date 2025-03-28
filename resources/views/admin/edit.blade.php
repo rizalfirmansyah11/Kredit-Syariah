@@ -1,85 +1,62 @@
-
 @extends('layout.main')
 @section('content')
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">User
-            </h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Edit User</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
-    <section class="content">
-        <div class="container-fluid">
-                <form action="{{ route('admin.user.update',['id' => $data->id]) }}" method="POST">
-                    @csrf
-                    @method('PUT')
-                    <div class="row">
-                        <!-- left column -->
-                        <div class="col-md-6">
-                          <!-- general form elements -->
-                          <div class="card card-primary">
-                            <div class="card-header">
-                              <h3 class="card-title">Form Edit User</h3>
-                            </div>
-                            <!-- /.card-header -->
-                            <!-- form start -->
-                            <form>
-                              <div class="card-body">
-                                <div class="form-group">
-                                  <label for="exampleInputEmail1">Email </label>
-                                  <input type="email" class="form-control" id="exampleInputEmail1" name="email" value="{{ $data->email }}" placeholder="Enter email">
-                                  @error('email')
-                                      <small>{{ $message }}</small>
-                                  @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Name</label>
-                                    <input type="name" name="name" class="form-control" id="exampleInputEmail1" value="{{ $data->name }}" placeholder="Enter Name">
-                                    @error('name')
-                                    <small>{{ $message }}</small>
-                                @enderror
-                                  </div>
-                                <div class="form-group">
-                                  <label for="exampleInputPassword1">Password</label>
-                                  <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                                  @error('password')
-                                  <small>{{ $message }}</small>
-                              @enderror
-                                </div>
-                            
-                              </div>
-                              <!-- /.card-body -->
-              
-                              <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                              </div>
-                            </form>
-                          </div>
-                          <!-- /.card -->
-              
-            
+<div class="content-wrapper py-4">
+    <div class="container">
+        <section class="content">
+            <div class="row justify-content-center">
+                <div class="col-md-10"> <!-- Lebih lebar -->
+                    <div class="card shadow-lg">
+                        <div class="card-header bg-primary text-white">
+                            <h4 class="card-title m-0">Form Edit User</h4>
                         </div>
-                        <!--/.col (left) -->
-                      </div>
-                </form>
-         
-          <!-- /.row -->
-        </div><!-- /.container-fluid -->
-      </section>
-     
-</div>  
+                        <div class="card-body">
+                            <form action="{{ route('admin.user.update', $data->id) }}" method="POST">
+                                @csrf
+                                @method('PUT')
 
+                                <div class="mb-3">
+                                    <label for="email" class="font-weight-bold">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" value="{{ $data->email }}" placeholder="Masukkan email">
+                                    @error('email') <small class="text-danger">{{ $message }}</small> @enderror
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="name" class="font-weight-bold">Nama</label>
+                                    <input type="text" class="form-control" id="name" name="name" value="{{ $data->name }}" placeholder="Masukkan nama">
+                                    @error('name') <small class="text-danger">{{ $message }}</small> @enderror
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="phone" class="font-weight-bold">No Telepon</label>
+                                    <input type="text" class="form-control" id="phone" name="phone" value="{{ $data->phone }}" placeholder="Masukkan no telepon">
+                                    @error('phone') <small class="text-danger">{{ $message }}</small> @enderror
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="address" class="font-weight-bold">Alamat</label>
+                                    <textarea class="form-control" id="address" name="address" rows="3" placeholder="Masukkan alamat">{{ $data->address }}</textarea>
+                                    @error('address') <small class="text-danger">{{ $message }}</small> @enderror
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="role" class="font-weight-bold">Role</label>
+                                    <select class="form-control" id="role" name="role">
+                                        <option value="admin" {{ $data->role == 'admin' ? 'selected' : '' }}>Admin</option>
+                                        <option value="nasabah" {{ $data->role == 'nasabah' ? 'selected' : '' }}>Nasabah</option>
+                                    </select>
+                                    @error('role') <small class="text-danger">{{ $message }}</small> @enderror
+                                </div>
+
+                                <div class="d-flex justify-content-between">
+                                    <a href="{{ route('admin.index') }}" class="btn btn-secondary">Batal</a>
+                                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
 @endsection
